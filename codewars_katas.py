@@ -3,8 +3,6 @@ import itertools
 import re
 import string
 
-from collections import OrderedDict
-
 
 """
 Descending Order
@@ -716,3 +714,34 @@ print(number_format(100000))
 print(number_format(5678545))
 print(number_format(-420902))
 print(number_format(5020520718))
+
+
+"""
+Length and two values.
+
+Given an integer n and two other values, build an array of size n filled with these two values alternating.
+Examples
+
+5, true, false     -->  [true, false, true, false, true]
+10, "blue", "red"  -->  ["blue", "red", "blue", "red", "blue", "red", "blue", "red", "blue", "red"]
+0, "one", "two"    -->  []
+
+"""
+print('*** Length and two values. ***')
+
+
+def alternate(n, first_value, second_value):
+    lst = [first_value, second_value]
+    new_lst = []
+    count = 0
+    for i in itertools.cycle(lst):
+        if count > n - 1:
+            break
+        new_lst.append(i)
+        count += 1
+    return new_lst
+
+
+print(alternate(5, True, False))
+print(alternate(10, "blue", "red"))
+print(alternate(0, "one", "two" ))
