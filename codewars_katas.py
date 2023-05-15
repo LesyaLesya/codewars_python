@@ -3,6 +3,8 @@ import itertools
 import re
 import string
 
+from collections import OrderedDict
+
 
 """
 Descending Order
@@ -656,3 +658,61 @@ def chain(init_val, functions):
 
 
 print(chain(50, [add10, mul30]))
+
+
+"""
+Find Duplicates 
+
+Given an array, find the duplicates in that array, and return a new array of those duplicates. 
+The elements of the returned array should appear in the order when they first appeared as duplicates.
+
+Note: numbers and their corresponding string representations should not be treated as duplicates (i.e., "1" != 1).
+Examples
+
+[1, 2, 4, 4, 3, 3, 1, 5, 3, "5"]  ==>  [4, 3, 1]
+[0, 1, 2, 3, 4, 5]                ==>  []
+
+
+"""
+print('*** Find Duplicates ***')
+
+
+def duplicates(arr):
+    new_arr = []
+    for i in range(len(arr)):
+        if i != arr.index(arr[i]) and arr[i] not in new_arr:
+            new_arr.append(arr[i])
+    return new_arr
+
+
+print(duplicates([1, 2, 4, 4, 3, 3, 1, 5, 3, "5"]))
+print(duplicates([0, 1, 2, 3, 4, 5]))
+print(duplicates(['1', 2, 4, '4', 3, '3', 1, 5, 3, 3, 3, 3]))
+print(duplicates([]))
+
+
+"""
+Number Format
+
+Format any integer provided into a string with "," (commas) in the correct places.
+
+Example:
+
+For n = 100000 the function should return '100,000';
+For n = 5678545 the function should return '5,678,545';
+for n = -420902 the function should return '-420,902'.
+
+
+"""
+print('*** Number Format ***')
+
+
+def number_format(n):
+    # print(format(n, ','))
+    return "{:,d}".format(n)
+
+
+print(number_format(100000))
+print(number_format(5678545))
+print(number_format(-420902))
+print(number_format(5020520718))
