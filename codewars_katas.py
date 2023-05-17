@@ -745,3 +745,39 @@ def alternate(n, first_value, second_value):
 print(alternate(5, True, False))
 print(alternate(10, "blue", "red"))
 print(alternate(0, "one", "two" ))
+
+
+"""
+Compare 2 digit numbers
+
+You are given 2 two-digit numbers. You should check if they are similar by comparing 
+their numbers, and return the result in %.
+
+Example:
+
+    compare(13,14)=50%;
+    compare(23,22)=50%;
+    compare(15,51)=100%;
+    compare(12,34)=0%.
+
+
+"""
+print('*** Compare 2 digit numbers ***')
+
+
+def compare(a, b):
+    a = sorted(str(a))
+    b = sorted(str(b))
+    if a == b:
+        return '100%'
+    elif a[0] in b or a[1] in b:
+        return '50%'
+    else:
+        return '0%'
+
+
+print(compare(13, 14))
+print(compare(23, 22))
+print(compare(15, 51))
+print(compare(12, 34))
+print(compare(66, 16))
