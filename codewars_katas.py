@@ -781,3 +781,104 @@ print(compare(23, 22))
 print(compare(15, 51))
 print(compare(12, 34))
 print(compare(66, 16))
+
+"""
+Simple remove duplicates
+
+Remove the duplicates from a list of integers, keeping the last ( rightmost ) occurrence of each element.
+Example:
+
+For input: [3, 4, 4, 3, 6, 3]
+
+    remove the 3 at index 0
+    remove the 4 at index 1
+    remove the 3 at index 3
+
+Expected output: [4, 6, 3]
+
+"""
+print('*** Simple remove duplicates ***')
+
+
+def solve(arr):
+    for i in arr[:]:
+        if arr.count(i) > 1:
+            arr.pop(arr.index(i))
+    return arr
+
+
+print(solve([3, 4, 4, 3, 6, 3]))
+print(solve([1, 2, 1, 2, 1, 2, 3]))
+
+
+"""
+Array plus array
+
+I'm new to coding and now I want to get the sum of two arrays...
+Actually the sum of all their elements. I'll appreciate for your help.
+
+P.S. Each array includes only integer numbers. Output is a number too.
+"""
+print('*** Array plus array ***')
+
+
+def array_plus_array(arr1, arr2):
+    return sum(arr1) + sum(arr2)
+
+
+print(array_plus_array([1, 2, 3], [4, 5, 6]))
+print(array_plus_array([-1, -2, -3], [-4, -5, -6]))
+
+
+"""
+Reversed sequence
+
+Build a function that returns an array of integers from n to 1 where n>0.
+
+Example : n=5 --> [5,4,3,2,1]
+"""
+print('*** Reversed sequence ***')
+
+
+def reverse_seq(n):
+    lst = []
+    for i in range(n, 0, -1):
+        lst.append(i)
+    return lst
+
+
+print(reverse_seq(5))
+
+
+"""
+Last digit of a large number
+
+Define a function that takes in two non-negative integers aaa and bbb and 
+returns the last decimal digit of aba^bab. Note that aaa and bbb may be very large!
+
+For example, the last decimal digit of 979^797 is 999, since 97=47829699^7 = 478296997=4782969. 
+The last decimal digit of (2200)2300({2^{200}})^{2^{300}}(2200)2300, 
+which has over 109210^{92}1092 decimal digits, is 666. Also, please take 000^000 to be 111.
+
+You may assume that the input will always be valid.
+Examples
+
+last_digit(4, 1)                # returns 4
+last_digit(4, 2)                # returns 6
+last_digit(9, 7)                # returns 9
+last_digit(10, 10 ** 10)        # returns 0
+last_digit(2 ** 200, 2 ** 300)  # returns 6
+
+"""
+print('*** Last digit of a large number ***')
+
+
+def last_digit(n1, n2):
+    return pow(n1, n2, 10)
+
+
+print(last_digit(4, 1))
+print(last_digit(4, 2))
+print(last_digit(9, 7))
+print(last_digit(10, 10 ** 10))
+print(last_digit(2 ** 200, 2 ** 300))
