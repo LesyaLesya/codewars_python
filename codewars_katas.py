@@ -882,3 +882,81 @@ print(last_digit(4, 2))
 print(last_digit(9, 7))
 print(last_digit(10, 10 ** 10))
 print(last_digit(2 ** 200, 2 ** 300))
+
+"""
+What is between?
+
+Complete the function that takes two integers (a, b, where a < b) and return an array of 
+all integers between the input parameters, including them.
+
+For example:
+
+a = 1
+b = 4
+--> [1, 2, 3, 4]
+
+
+"""
+print('*** What is between? ***')
+
+
+def between(a, b):
+    lst = []
+    for i in range(a, b+1):
+        lst.append(i)
+    return lst
+
+
+print(between(1, 4))
+
+
+"""
+Add Length
+
+What if we need the length of the words separated by a space to be added at the 
+end of that same word and have it returned as an array?
+
+Example(Input --> Output)
+
+"apple ban" --> ["apple 5", "ban 3"]
+"you will win" -->["you 3", "will 4", "win 3"]
+
+Your task is to write a function that takes a String and returns an Array/list 
+with the length of each word added to each element .
+
+Note: String will have at least one element; words will always be separated by a space.
+
+"""
+print('*** Add Length ***')
+
+
+def add_length(str_):
+    lst = str_.split(' ')
+    new_arr = [f'{i} {str(len(i))}' for i in lst]
+    return new_arr
+
+
+print(add_length('apple ban'))
+
+
+"""
+Find the position!
+
+When provided with a letter, return its position in the alphabet.
+
+Input :: "a"
+
+Ouput :: "Position of alphabet: 1"
+
+"""
+print('*** Find the position! ***')
+
+
+def position(alphabet):
+    pos = ord(alphabet) - 96
+    return f'Position of alphabet: {pos}'
+
+
+print(position('a'))
+print(position('b'))
+print(position('z'))
