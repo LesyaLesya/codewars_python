@@ -960,3 +960,296 @@ def position(alphabet):
 print(position('a'))
 print(position('b'))
 print(position('z'))
+
+
+"""
+A Needle in the Haystack
+
+Can you find the needle in the haystack?
+
+Write a function findNeedle() that takes an array full of junk but containing one "needle"
+
+After your function finds the needle it should return a message (as a string) that says:
+
+"found the needle at position " plus the index it found the needle, so:
+
+Example(Input --> Output)
+
+["hay", "junk", "hay", "hay", "moreJunk", "needle", "randomJunk"] --> "found the needle at position 5" 
+"""
+print('*** A Needle in the Haystack ***')
+
+
+def find_needle(haystack):
+    idx = haystack.index('needle')
+    return f'found the needle at position {idx}'
+
+
+print(find_needle(['3', '123124234', None, 'needle', 'world', 'hay', 2, '3', True, False]))
+print(find_needle(["hay", "junk", "hay", "hay", "moreJunk", "needle", "randomJunk"] ))
+
+
+"""
+Sentence Smash
+
+Write a function that takes an array of words and smashes them together into a sentence and returns the sentence. 
+You can ignore any need to sanitize words or add punctuation, but you should add spaces between each word. Be careful, there shouldn't be a space at the beginning or the end of the sentence!
+Example
+
+['hello', 'world', 'this', 'is', 'great']  =>  'hello world this is great'
+"""
+
+print('*** Sentence Smash ***')
+
+
+def smash(words):
+    return ' '.join(words)
+
+print(smash(['hello', 'world', 'this', 'is', 'great']))
+
+
+"""
+L1: Set Alarm
+Write a function named setAlarm/set_alarm/set-alarm/setalarm (depending on language) which receives two parameters. 
+The first parameter, employed, is true whenever you are employed and the second parameter, vacation 
+is true whenever you are on vacation.
+
+The function should return true if you are employed and not on vacation (because these are the circumstances 
+under which you need to set an alarm). It should return false otherwise. Examples:
+
+employed | vacation 
+true     | true     => false
+true     | false    => true
+false    | true     => false
+false    | false    => false
+"""
+
+print('*** L1: Set Alarm ***')
+
+
+def set_alarm(employed, vacation):
+    return employed and not vacation
+
+
+print(set_alarm(True, True))
+print(set_alarm(True, False))
+print(set_alarm(False, True))
+print(set_alarm(False, False))
+
+
+"""
+String ends with?
+
+Complete the solution so that it returns true if the first argument(string) 
+passed in ends with the 2nd argument (also a string).
+
+Examples:
+
+solution('abc', 'bc') # returns true
+solution('abc', 'd') # returns false
+
+"""
+print('*** String ends with? ***')
+
+
+def solution(text, ending):
+    return text.endswith(ending)
+
+
+print(solution('abc', 'bc'))
+print(solution('abc', 'd'))
+
+
+"""
+Anagram Detection
+
+An anagram is the result of rearranging the letters of a word to produce a new word (see wikipedia).
+
+Note: anagrams are case insensitive
+
+Complete the function to return true if the two arguments given are anagrams of each other; return false otherwise.
+Examples
+
+    "foefet" is an anagram of "toffee"
+
+    "Buckethead" is an anagram of "DeathCubeK"
+"""
+print('*** Anagram Detection ***')
+
+
+def is_anagram(test, original):
+    str1 = sorted(test.lower())
+    str2 = sorted(original.lower())
+    return str1 == str2
+
+
+print(is_anagram("foefet", "toffee"))
+print(is_anagram("Buckethead", "DeathCubeK"))
+print(is_anagram("Twoo", "WooT"))
+print(is_anagram("dumble", "bumble"))
+print(is_anagram("ound", "round"))
+print(is_anagram('GRbqbKlDlBxZUqUuJ', 'xQlYDJVRZCUbquGUq'))
+
+
+"""
+Short Long Short
+
+Given 2 strings, a and b, return a string of the form short+long+short, 
+with the shorter string on the outside and the longer string on the inside. The strings will not be the same 
+length, but they may be empty ( zero length ).
+
+Hint for R users:
+
+    The length of string is not always the same as the number of characters
+
+For example: (Input1, Input2) --> output
+
+("1", "22") --> "1221"
+("22", "1") --> "1221"
+"""
+
+print('*** Short Long Short ***')
+
+
+def solution(a, b):
+    if len(a) > len(b):
+        return f'{b}{a}{b}'
+    else:
+        return f'{a}{b}{a}'
+
+
+print(solution("1", "22"))
+print(solution("22", "1"))
+print(solution('13', '200'))
+print(solution('Soon', 'Me'))
+
+
+"""
+Friend or Foe?
+
+Make a program that filters a list of strings and returns a list with only your friends name in it.
+
+If a name has exactly 4 letters in it, you can be sure that it has to be a 
+friend of yours! Otherwise, you can be sure he's not...
+
+Ex: Input = ["Ryan", "Kieran", "Jason", "Yous"], Output = ["Ryan", "Yous"]
+
+i.e.
+
+friend ["Ryan", "Kieran", "Mark"] `shouldBe` ["Ryan", "Mark"]
+"""
+
+print('*** Friend or Foe? ***')
+
+
+def friend(x):
+    return [i for i in x if len(i) == 4]
+
+
+print(friend(["Ryan", "Kieran", "Mark"]))
+print(friend(["Ryan", "Jimmy", "123", "4", "Cool Man"]))
+print(friend(["Jimm", "Cari", "aret", "truehdnviegkwgvke", "sixtyiscooooool"]))
+
+
+"""
+Consonant value
+
+Given a lowercase string that has alphabetic characters only and no spaces, return the highest value 
+of consonant substrings. Consonants are any letters of the alphabet except "aeiou".
+
+We shall assign the following values: a = 1, b = 2, c = 3, .... z = 26.
+
+For example, for the word "zodiacs", let's cross out the vowels. We get: "z o d ia cs"
+
+-- The consonant substrings are: "z", "d" and "cs" and the values are z = 26, d = 4 and cs = 3 + 19 = 22. 
+The highest is 26.
+solve("zodiacs") = 26
+
+For the word "strength", solve("strength") = 57
+-- The consonant substrings are: "str" and "ngth" with values "str" = 19 + 20 + 18 = 57 and "ngth" = 14 + 7 + 20 + 8 = 49. 
+The highest is 57.
+"""
+print('*** Consonant value ***')
+
+
+def solve(s):
+    alphabet_dict = {key: value for key, value in zip(list(string.ascii_lowercase), range(1, 27))}
+    list_s = re.split('a|e|i|o|u', s)
+    values = []
+    for i in list_s:
+        summa = 0
+        for j in i:
+            summa += alphabet_dict.get(j)
+        values.append(summa)
+    return max(values)
+
+
+print(solve("strength"))
+print(solve("zodiacs"))
+
+
+"""
+Find array
+
+You are given two arrays arr1 and arr2, where arr2 always contains integers.
+
+Write a function such that:
+
+For arr1 = ['a', 'a', 'a', 'a', 'a'], arr2 = [2, 4] the function returns ['a', 'a']
+
+For arr1 = [0, 1, 5, 2, 1, 8, 9, 1, 5], arr2 = [1, 4, 7] the function returns [1, 1, 1]
+
+For arr1 = [0, 3, 4], arr2 = [2, 6] the function returns [4]
+
+For arr1=["a","b","c","d"] , arr2=[2,2,2], the function returns ["c","c","c"]
+
+For arr1=["a","b","c","d"], arr2=[3,0,2] the function returns ["d","a","c"]
+"""
+print('*** Find array ***')
+
+
+def find_array(arr1, arr2):
+    new_arr = []
+    for i in arr2:
+        try:
+            new_arr.append(arr1[i])
+        except IndexError:
+            continue
+    return new_arr
+
+
+print(find_array(['a', 'a', 'a', 'a', 'a'], [2, 4]))
+print(find_array([0, 1, 5, 2, 1, 8, 9, 1, 5], [1, 4, 7]))
+print(find_array([1], []))
+print(find_array([0, 3, 4], [2, 6]))
+
+
+"""
+Exes and Ohs
+
+Check to see if a string has the same amount of 'x's and 'o's. The method must return a boolean 
+and be case insensitive. The string can contain any char.
+
+Examples input/output:
+
+XO("ooxx") => true
+XO("xooxx") => false
+XO("ooxXm") => true
+XO("zpzpzpp") => true // when no 'x' and 'o' is present should return true
+XO("zzoo") => false
+"""
+print('*** Exes and Ohs ***')
+
+
+def xo(s):
+    s = s.lower()
+    return s.count('x') == s.count('o')
+
+
+print(xo("ooxx"))
+print(xo("xooxx"))
+print(xo("ooxXm"))
+print(xo("zpzpzpp"))
+print(xo("zzoo"))
+print(xo("oxOx"))
+print(xo(""))
