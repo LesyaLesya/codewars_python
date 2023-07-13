@@ -356,3 +356,64 @@ print(last_digit(99))
 print(last_digit(387))
 print(last_digit(1673))
 print(last_digit(10000))
+
+
+"""
+Identify Best Planet
+
+ A space agency recently launched a new satellite with the primary goal of identifying the most suitable 
+ planet within a given solar system to support human life. The satellite is equipped to scan entire solar 
+ systems and add each detected planet to a list. The satellite uses the following format when inputting 
+ planets into an array: [elements]_[surface area]. In this format, each element is represented by its 
+ chemical symbol from the periodic table. For example, a planet composed of hydrogen (H), oxygen (O), 
+ and nitrogen (N), with a surface area of 100 thousand square miles, wouled be labeled as follows:
+
+    HON_100
+
+  You will receive a list that includes all the planets in a solar system, as well as an inclusive
+ maximum size that a planet can be for human life. Your task is to identify the planet that possesses all 
+ the essential elements for human life while being as large as possible. The required elements for human 
+ life are: Hydrogen (H), Carbon (C), Nitrogen (N), Oxygen (O), Phosphorus (P), and Calcium (Ca). 
+ These elements are represented as follows:
+
+["H", "O", "N", "C", "P", "Ca"]
+
+  If none of the planets meet the requirements, then return an empty string, "". 
+Finally, multiple planets can contain all of the required elements; in this case, return the planet 
+that is closest to the maximum possible size.
+
+Example:
+
+Your input is in the form of:
+
+bestPlanet({"OHNCCaP_100", "OHC_200", "OCa_50", "OHCCaP_400", "OHNCCaP_225", "OHCa_250"}, 250)
+
+You should return:
+
+"OHNCCaP_225"
+"""
+print('*** Identify Best Planet ***')
+
+
+REQUIRED_ELEMENTS = ['H', 'C', 'N', 'O', 'P', 'Ca']
+
+
+def best_planet(solar_system, max_size):
+    buf = []
+    for i in solar_system:
+        elem = re.findall('[A-Z][a-z]?', i.split('_')[0])
+        size = int(i.split('_')[1])
+        if all(item in elem for item in REQUIRED_ELEMENTS) and size <= max_size:
+            buf.append((''.join(elem), size))
+    if len(buf) == 0:
+        return ''
+    elif len(buf) == 1:
+        return f'{buf[0][0]}_{buf[0][1]}'
+    else:
+        res = max(buf, key=lambda item: item[1])
+        return f'{res[0]}_{res[1]}'
+
+
+print(best_planet(
+    ['PHNOCaC_212', 'RfInBeLaSgDs_188', 'PCaCNOAgHTsPu_304', 'NhFAlReNaSiCf_167',
+     'OPClNCCaH_110', 'NdNaNhFAlNpTa_337', 'NAmUOCH_82'], 280))
