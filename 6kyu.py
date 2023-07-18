@@ -417,3 +417,140 @@ def best_planet(solar_system, max_size):
 print(best_planet(
     ['PHNOCaC_212', 'RfInBeLaSgDs_188', 'PCaCNOAgHTsPu_304', 'NhFAlReNaSiCf_167',
      'OPClNCCaH_110', 'NdNaNhFAlNpTa_337', 'NAmUOCH_82'], 280))
+
+
+"""
+Unwanted dollars
+
+If you're faced with an input box, like this:
+
+                                           +--------------+
+  Enter the price of the item, in dollars: |              |
+                                           +--------------+
+
+do you put the $ sign in, or not? Inevitably, some people will type a $ sign and others will leave it out. 
+The instructions could be made clearer - but that won't help those annoying people who never read instructions anyway.
+
+A better solution is to write code that can handle the input whether it includes a $ sign or not.
+
+So, we need a simple function that converts a string representing a number (possibly with a $ sign in 
+front of it) into the number itself.
+
+Remember to consider negative numbers (the - sign may come either before or after the $ sign, if there is one), 
+and any extraneous space characters (leading, trailing, or around the $ sign) that the users might put in. 
+You do not need to handle input with trailing characters other than spaces (e.g. "1.2 3" or "1$"). 
+If the given string does not represent a number, (either with or without a $ sign), return 0.0 .
+"""
+print('*** Unwanted dollars ***')
+
+
+def money_value(s):
+    m = s.replace(' ', '').replace('$', ''). replace(',', '.')
+    try:
+        return float(m)
+    except ValueError:
+        return 0.0
+
+
+print(money_value("12.34"))
+print(money_value(" $5.67"))
+print(money_value("-0.89"))
+print(money_value("-$ 0.1"))
+print(money_value("$-2.3456"))
+print(money_value("007"))
+print(money_value(" $ 89"))
+print(money_value("   .11"))
+print(money_value("$.2"))
+print(money_value("-.34"))
+print(money_value("$$$"))
+print(money_value("-"))
+
+"""
+UN-usual Sort
+
+So, the unusualSort/unusual_sort function you'll have to code will sort letters as usual, 
+but will put digits (or one-digit-long numbers ) after letters.
+Examples
+
+unusual_sort(["a","z","b"])  # -> ["a","b","z"]  as usual
+unusual_sort(["a","Z","B"])  # -> ["B","Z","a"]  as usual
+
+//... but ...
+unusual_sort(["1","z","a"])  # -> ["a","z","1"]
+unusual_sort(["1","Z","a"])  # -> ["Z","a","1"]
+unusual_sort([3,2,1"a","z","b"])  # -> ["a","b","z",1,2,3]
+unusual_sort([3,"2",1,"a","c","b"])  # -> ["a","b","c",1,"2",3]
+
+Note: digits will be sorted after "same-digit-numbers", eg: 1 is before "1", "2" after 2.
+
+unusual_sort([3,"2",1,"1","3",2])  # -> [1,"1",2,"2",3,"3"]
+
+You may assume that argument will always be an array/list of characters or one-digit-long numbers.
+"""
+
+print('*** UN-usual Sort ***')
+
+
+def unusual_sort(array):
+    buffer_letters = []
+    buffer_nums = []
+    buffer_nums_string = []
+    for i in array:
+        if type(i) == int:
+            buffer_nums.append(i)
+        elif i.isalpha():
+            buffer_letters.append(i)
+        else:
+            buffer_nums_string.append(i)
+    buffer_letters.sort()
+    buffer_nums.sort()
+    buffer_nums_string.sort()
+    buffer_all_nums = buffer_nums + buffer_nums_string
+    buffer_all_nums.sort(key=int)
+    return buffer_letters + buffer_all_nums
+
+
+print(unusual_sort(["a","z","b"]))
+print(unusual_sort(["a","Z","B"]))
+print(unusual_sort(["1","z","a"]))
+print(unusual_sort(["1","Z","a"]))
+print(unusual_sort([3,2,1, "a","z","b"]))
+print(unusual_sort([3,"2",1,"a","c","b"]))
+print(unusual_sort([3,"2",1,"1","3",2]))
+print(unusual_sort(['0', '9', '8', '1', '7', '2', '6', '3', '5', '4']))
+print(unusual_sort(['3', '2', '1', 'c', 'b', 'a']))
+print(unusual_sort(['x', '1', 'y', '2', 'z', '3']))
+print(unusual_sort(['c', 'b', 'a', '9', '5', '0', 'X', 'Y', 'Z']))
+
+
+"""
+Two Sum
+
+Write a function that takes an array of numbers (integers for the tests) and a target number. 
+It should find two different items in the array that, when added together, give the target value. 
+The indices of these items should then be returned in a tuple / list (depending on your language) 
+like so: (index1, index2).
+
+For the purposes of this kata, some tests may have multiple answers; any valid solutions will be accepted.
+
+The input will always be valid (numbers will be an array of length 2 or greater, and all of the 
+items will be numbers; target will always be the sum of two different items from that array).
+
+Based on: http://oj.leetcode.com/problems/two-sum/
+
+two_sum([1, 2, 3], 4) # returns [0, 2] or [2, 0]
+"""
+
+print('*** Two Sum ***')
+
+
+def two_sum(numbers, target):
+    for i in range(len(numbers)):
+        for j in range(i + 1, len(numbers)):
+            if numbers[i] + numbers[j] == target:
+                return [i, j]
+
+
+print(two_sum([1, 2, 3], 4))
+print(two_sum([1234,5678,9012], 14690))
+print(two_sum([2,2,3], 4))
