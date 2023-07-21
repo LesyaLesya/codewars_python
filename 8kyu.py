@@ -286,16 +286,21 @@ print('*** No zeros for heros ***')
 
 
 def no_boring_zeros(n):
-    n = list(str(n))
-    if len(n) == 1:
-        return int(n[0])
-    else:
-        for i in reversed(n):
-            if i == '0':
-                del n[-1]
-            else:
-                break
-        return int(''.join(n))
+    if n == 0:
+        return n
+    while n % 10 == 0:
+        n /= 10
+    return int(n)
+    # n = list(str(n))
+    # if len(n) == 1:
+    #     return int(n[0])
+    # else:
+    #     for i in reversed(n):
+    #         if i == '0':
+    #             del n[-1]
+    #         else:
+    #             break
+    #     return int(''.join(n))
 
 
 print(no_boring_zeros(14500))
@@ -338,3 +343,30 @@ def enough(cap, on, wait):
 print(enough(10, 5, 5))
 print(enough(100, 60, 50))
 print(enough(20, 5, 5))
+
+
+"""
+Draw stairs
+
+Given a number n, draw stairs using the letter "I", n tall and n wide, with the tallest in the top left.
+
+For example n = 3 result in:
+
+"I\n I\n  I"
+
+or printed:
+
+I
+ I
+  I
+"""
+
+print('*** Draw stairs ***')
+
+
+def draw_stairs(n):
+    return '\n'.join((' '*i) + 'I' for i in range(n))
+
+
+print(draw_stairs(3))
+print(draw_stairs(7))

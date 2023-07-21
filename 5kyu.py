@@ -1,4 +1,5 @@
 import re
+import itertools
 
 """
 The Hashtag Generator
@@ -165,3 +166,35 @@ print(last_digit(4, 2))
 print(last_digit(9, 7))
 print(last_digit(10, 10 ** 10))
 print(last_digit(2 ** 200, 2 ** 300))
+
+
+"""
+Lazy Repeater
+
+The makeLooper() function (or make_looper in your language) takes a string (of non-zero length) as an argument. 
+It returns a function. The function it returns will return successive characters of the string on successive 
+invocations. It will start back at the beginning of the string once it reaches the end.
+
+For example:
+
+abc = make_looper('abc')
+abc() # should return 'a' on this first call
+abc() # should return 'b' on this second call
+abc() # should return 'c' on this third call
+abc() # should return 'a' again on this fourth call
+
+"""
+
+print('*** Lazy Repeater ***')
+
+
+def make_looper(string):
+    a = itertools.cycle(list(string))
+    return lambda: next(a)
+
+
+abc = make_looper("abc")
+print(abc())
+print(abc())
+print(abc())
+print(abc())

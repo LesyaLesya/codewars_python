@@ -588,3 +588,52 @@ print(xo("zzoo"))
 print(xo("oxOx"))
 print(xo(""))
 
+
+"""
+Find the capitals
+
+Write a function that takes a single string (word) as argument. 
+The function must return an ordered list containing the indexes of all capital letters in the string.
+Example
+
+Test.assertSimilar( capitals('CodEWaRs'), [0,3,4,6] );
+"""
+
+print('*** Find the capitals ***')
+
+
+def capitals(word):
+    return [i for i in range(len(word)) if word[i].isupper()]
+
+
+print(capitals('CodEWaRs'))
+print(capitals('xscrCVojMBHFLrVuotJu'))
+print(capitals('DOgTMfrhxudKXraetOVzyaVR'))
+
+
+"""
+Find the divisors! 
+
+Create a function named divisors/Divisors that takes an integer n > 1 and returns an 
+array with all of the integer's divisors(except for 1 and the number itself), from smallest to largest. 
+If the number is prime return the string '(integer) is prime' (null in C#, empty table in COBOL) 
+(use Either String a in Haskell and Result<Vec<u32>, String> in Rust).
+Example:
+
+divisors(12); #should return [2,3,4,6]
+divisors(25); #should return [5]
+divisors(13); #should return "13 is prime"
+"""
+
+print('*** Find the divisors! ***')
+
+
+def divisors(integer):
+    res = [i for i in range(2, integer) if integer % i == 0]
+    return f'{integer} is prime' if len(res) == 0 else res
+
+
+print(divisors(12))
+print(divisors(25))
+print(divisors(13))
+print(divisors(29))
