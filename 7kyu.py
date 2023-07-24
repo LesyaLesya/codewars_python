@@ -637,3 +637,85 @@ print(divisors(12))
 print(divisors(25))
 print(divisors(13))
 print(divisors(29))
+
+
+"""
+Two numbers are positive
+
+Task:
+
+Your job is to write a function, which takes three integers a, b, and c as arguments, and returns True 
+if exactly two of of the three integers are positive numbers (greater than zero), and False - otherwise.
+Examples:
+
+two_are_positive(2, 4, -3) == True
+two_are_positive(-4, 6, 8) == True
+two_are_positive(4, -6, 9) == True
+two_are_positive(-4, 6, 0) == False
+two_are_positive(4, 6, 10) == False
+two_are_positive(-14, -3, -4) == False
+"""
+
+print('*** Two numbers are positive ***')
+
+
+def two_are_positive(a, b, c):
+    return True if (a > 0 and b > 0 and c <= 0) or (b > 0 and c > 0 and a <= 0) or (a > 0 and c > 0 and b <=0 ) else False
+
+
+print(two_are_positive(2, 4, -3))
+print(two_are_positive(-4, 6, 8))
+print(two_are_positive(-4, 6, 0))
+print(two_are_positive(-14, -3, -4))
+print(two_are_positive(4, 6, 10))
+
+
+
+"""
+Help Suzuki rake his garden!
+
+Help Suzuki rake his garden!
+
+The monastery has a magnificent Zen garden made of white gravel and rocks and it is raked diligently everyday 
+by the monks. Suzuki having a keen eye is always on the lookout for anything creeping into the garden that must 
+be removed during the daily raking such as insects or moss.
+
+You will be given a string representing the garden such as:
+
+garden = 'gravel gravel gravel gravel gravel gravel gravel gravel gravel rock slug ant gravel gravel snail 
+rock gravel gravel gravel gravel gravel gravel gravel slug gravel ant gravel gravel gravel gravel rock slug 
+gravel gravel gravel gravel gravel snail gravel gravel rock gravel snail slug gravel gravel spider gravel gravel 
+gravel gravel gravel gravel gravel gravel moss gravel gravel gravel snail gravel gravel gravel ant gravel 
+gravel moss gravel gravel gravel gravel snail gravel gravel gravel gravel slug gravel rock gravel gravel 
+rock gravel gravel gravel gravel snail gravel gravel rock gravel gravel gravel gravel gravel spider 
+gravel rock gravel gravel'
+
+Rake out any items that are not a rock or gravel and replace them with gravel such that:
+
+garden = 'slug spider rock gravel gravel gravel gravel gravel gravel gravel'
+
+Returns a string with all items except a rock or gravel replaced with gravel:
+
+garden = 'gravel gravel rock gravel gravel gravel gravel gravel gravel gravel'
+"""
+
+print('*** Help Suzuki rake his garden! ***')
+
+
+def rake_garden(garden):
+    l = garden.split(' ')
+    new_l = [i if i == 'rock' or i == 'gravel' else 'gravel' for i in l]
+    return ' '.join(new_l)
+
+
+print(rake_garden('slug spider rock gravel gravel gravel gravel gravel gravel gravel'))
+print(rake_garden('gravel gravel gravel gravel gravel gravel gravel gravel gravel rock '
+                  'slug ant gravel gravel snail rock gravel gravel gravel gravel gravel '
+                  'gravel gravel slug gravel ant gravel gravel gravel gravel rock slug '
+                  'gravel gravel gravel gravel gravel snail gravel gravel rock gravel '
+                  'snail slug gravel gravel spider gravel gravel gravel gravel gravel '
+                  'gravel gravel gravel moss gravel gravel gravel snail gravel gravel '
+                  'gravel ant gravel gravel moss gravel gravel gravel gravel snail gravel '
+                  'gravel gravel gravel slug gravel rock gravel gravel rock gravel gravel '
+                  'gravel gravel snail gravel gravel rock gravel gravel gravel gravel gravel '
+                  'spider gravel rock gravel gravel'))

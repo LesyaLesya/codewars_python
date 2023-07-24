@@ -1,5 +1,6 @@
 import string
 import re
+import collections
 
 """
 Detect Pangram
@@ -618,3 +619,24 @@ print(spin_words('This is a test'))
 print(spin_words('This is another test'))
 print(spin_words('This sentence is a sentence'))
 print(spin_words('Welcome'))
+
+
+"""
+Count characters in your string
+
+The main idea is to count all the occurring characters in a string. 
+If you have a string like aba, then the result should be {'a': 2, 'b': 1}.
+
+What if the string is empty? Then the result should be empty object literal, {}.
+"""
+
+print('*** Count characters in your string ***')
+
+
+def count(s):
+    # return {i: s.count(i) for i in s}
+    return dict(collections.Counter(s))
+
+
+print(count('aba'))
+print(count(''))

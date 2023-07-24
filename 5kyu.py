@@ -198,3 +198,47 @@ print(abc())
 print(abc())
 print(abc())
 print(abc())
+
+
+"""
+String incrementer
+
+Your job is to write a function which increments a string, to create a new string.
+
+    If the string already ends with a number, the number should be incremented by 1.
+    If the string does not end with a number. the number 1 should be appended to the new string.
+
+Examples:
+
+foo -> foo1
+
+foobar23 -> foobar24
+
+foo0042 -> foo0043
+
+foo9 -> foo10
+
+foo099 -> foo100
+"""
+
+
+print('*** String incrementer ***')
+
+
+def increment_string(strng):
+    letters = strng.rstrip('0123456789')
+    nums = strng[len(letters):]
+    if nums == '':
+        return strng + '1'
+    return letters + str(("%0"+"%dd" % len(nums)) % (int(nums) + 1))
+
+
+print(increment_string('foo'))
+print(increment_string('foobar001'))
+print(increment_string('foobar1'))
+print(increment_string('foobar00'))
+print(increment_string('foobar99'))
+print(increment_string('foobar099'))
+print(increment_string('fo99obar99'))
+print(increment_string(''))
+print(increment_string('foobar00999'))
