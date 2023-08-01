@@ -2,6 +2,8 @@ import string
 import re
 import collections
 import sys
+from time import sleep
+import time
 
 """
 Detect Pangram
@@ -711,3 +713,99 @@ print(typist('AA'))
 print(typist('aA'))
 print(typist('Aa'))
 print(typist('DFjfkdaB'))
+
+
+"""
+Dbftbs Djqifs
+
+Your task is to create a function encryptor that takes 2 arguments - key and message - 
+and returns the encrypted message.
+
+Make sure to only shift letters, and be sure to keep the cases of the letters the same. 
+All punctuation, numbers, spaces, and so on should remain the same.
+
+Also be aware of keys greater than 26 and less than -26. There's only 26 letters in the alphabet!
+Examples
+
+A message 'Caesar Cipher' and a key of 1 returns 'Dbftbs Djqifs'.
+
+A message 'Caesar Cipher' and a key of -1 returns 'Bzdrzq Bhogdq'.
+"""
+
+print('*** Dbftbs Djqifs ***')
+
+
+def encryptor(key, message):
+    lower_letters = list(string.ascii_lowercase)
+    upper_letters = list(string.ascii_uppercase)
+    res = ''
+    for i in message:
+        if i.isalpha():
+            if i in lower_letters:
+                res += lower_letters[(lower_letters.index(i) + key) % 26]
+            elif i in upper_letters:
+                res += upper_letters[(upper_letters.index(i) + key) % 26]
+        else:
+            res += i
+    return res
+
+
+print(encryptor(13, ''))
+print(encryptor(13, 'Caesar Cipher'))
+print(encryptor(-5, 'Hello World!'))
+print(encryptor(27, 'Whoopi Goldberg'))
+print(encryptor(-62, 'c'))
+
+
+"""
+Timer Decorator
+
+Write a timer() decorator that validates if a function it decorates is executed within (less than) 
+a given seconds interval and returns a boolean True or False accordingly.
+
+Example:
+
+from time import sleep
+
+@timer(1)
+def foo():
+    sleep(0.1)
+    
+@timer(1)
+def bar():
+    sleep(1.1)
+
+
+>>> foo()
+True
+
+>>> bar()
+False
+"""
+
+print('*** Timer Decorator ***')
+
+
+def timer(limit):
+    def decor(func):
+        def outer(*args, **kwargs):
+            start = time.time()
+            func(*args, **kwargs)
+            stop = time.time() - start
+            return limit > stop
+        return outer
+    return decor
+
+
+@timer(1)
+def foo():
+    sleep(0.1)
+
+
+@timer(1)
+def bar():
+    sleep(1.1)
+
+
+print(foo())
+print(bar())

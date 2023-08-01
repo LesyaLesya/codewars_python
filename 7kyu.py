@@ -756,3 +756,25 @@ print(keep_order([1, 2, 3, 4, 7], 0)) # 0
 print(keep_order([1, 1, 2, 2, 2], 2)) # 2
 print(keep_order([1, 2, 3, 4], 5)) # 4
 print(keep_order([1, 2, 3, 4], -1)) # 0
+
+
+"""
+Remove anchor from URL
+
+Complete the function/method so that it returns the url with anything after the anchor (#) removed.
+Examples
+
+"www.codewars.com#about" --> "www.codewars.com"
+"www.codewars.com?page=1" -->"www.codewars.com?page=1"
+"""
+
+print('*** Remove anchor from URL ***')
+
+
+def remove_url_anchor(url):
+    return url.split('#')[0]
+
+
+print(remove_url_anchor("www.codewars.com#about"))
+print(remove_url_anchor("www.codewars.com/katas/?page=1#about"))
+print(remove_url_anchor("www.codewars.com/katas/"))
