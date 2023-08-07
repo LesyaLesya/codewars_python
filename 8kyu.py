@@ -370,3 +370,29 @@ def draw_stairs(n):
 
 print(draw_stairs(3))
 print(draw_stairs(7))
+
+
+"""
+Removing Elements
+
+Take an array and remove every second element from the array. 
+Always keep the first element and start removing with the next element.
+Example:
+
+["Keep", "Remove", "Keep", "Remove", "Keep", ...] --> ["Keep", "Keep", "Keep", ...]
+
+None of the arrays will be empty, so you don't have to worry about that!
+"""
+
+print('*** Removing Elements ***')
+
+
+def remove_every_other(my_list):
+    lst = []
+    for i in range(0, len(my_list), 2):
+        lst.append(my_list[i])
+    return lst
+
+
+print(remove_every_other([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+print(remove_every_other([[1, 2]]))

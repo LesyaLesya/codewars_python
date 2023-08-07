@@ -1,5 +1,6 @@
 import itertools
 import collections
+import string
 
 """
 Descending Order
@@ -778,3 +779,175 @@ def remove_url_anchor(url):
 print(remove_url_anchor("www.codewars.com#about"))
 print(remove_url_anchor("www.codewars.com/katas/?page=1#about"))
 print(remove_url_anchor("www.codewars.com/katas/"))
+
+
+"""
+The unknown but known variables: Addition
+
+This should be fairly simple. It is more of a puzzle than a programming problem.
+
+There will be a string input in this format: 'a+b' 2 lower case letters (a-z) seperated by a '+'
+
+Return the sum of the two variables.
+
+There is one correct answer for a pair of variables.
+
+I know the answers, it is your task to find out.
+
+Once you crack the code for one or two of the pairs, you will have the answer for the rest.
+
+It is like when you were in school doing math and you saw "11 = c+h" and you needed to find out what c and h were.
+
+However you don't have an 11. You have an unknown there as well. Example:
+
+X = a+b.
+
+You don't know what X is, and you don't know what b is or a, but it is a puzzle and you will find out.
+
+As part of this puzzle, there is three hints or clues on solving this. 
+I won't tell you what the other two are, but one of them is: Don't overthink it. It is a simple solution 
+
+Given the input as a string - Return the sum of the two variables as int.
+"""
+
+print('*** The unknown but known variables: Addition ***')
+
+
+def the_var(the_variables):
+    alphabet = string.ascii_lowercase
+    l1, l2 = the_variables.split('+')
+    return (alphabet.find(l1)+1) + (alphabet.find(l2)+1)
+
+
+print(the_var('d+g'))
+
+
+"""
+These are not my grades! (Revamped !)
+
+At the end of the last semester, Prof. Joey Greenhorn implemented an online 
+report card for his students in order to save paper. 
+Everything seemed to be working fine back then, but since the start of the new semester he 
+has received several emails from students complaining about erroneous grades showing up in 
+their online report cards. Can you help him correct his implementation of the "Student" class?
+
+The "Student" class should behave like this :
+
+someStudent = Student()
+someOtherStudent = Student()
+someStudent.add_grade(98)
+someOtherStudent.add_grade(77)
+someStudent.grades == [98] # Evaluates to True
+someOtherStudent.grades == [77] # Evaluates to True
+
+But right now, this is happening :
+
+someStudent = Student()
+someOtherStudent = Student()
+someStudent.add_grade(98)
+someOtherStudent.add_grade(77)
+someStudent.grades == [98, 77] # Evaluates to True
+someOtherStudent.grades == [98, 77] # Evaluates to True
+"""
+
+print('*** These are not my grades! (Revamped !) ***')
+
+
+class Student:
+
+    def __init__(self, first_name, last_name, grades=None):
+        self.first_name = first_name
+        self.last_name = last_name
+        if grades is None:
+            self.grades = []
+        else:
+            self.grades = grades
+
+    def add_grade(self, grade):
+        self.grades.append(grade)
+
+    def get_average(self):
+        return sum(self.grades) / len(self.grades)
+
+
+"""
+Thinkful - Object Drills: Quarks
+
+Background
+
+You're modelling the interaction between a large number of quarks and have decided to create a 
+Quark class so you can generate your own quark objects.
+
+Quarks are fundamental particles and the only fundamental particle to experience all four fundamental forces.
+Your task
+
+Your Quark class should allow you to create quarks of any valid color ("red", "blue", and "green") and 
+any valid flavor ('up', 'down', 'strange', 'charm', 'top', and 'bottom').
+
+Every quark has the same baryon_number (BaryonNumber in C#): 1/3.
+
+Every quark should have an .interact() (.Interact() in C#) method that allows any quark to interact 
+with another quark via the strong force. When two quarks interact they exchange colors.
+Example
+
+>>> q1 = Quark("red", "up")
+>>> q1.color
+"red"
+>>> q1.flavor
+"up"
+>>> q2 = Quark("blue", "strange")
+>>> q2.color
+"blue"
+>>> q2.baryon_number
+0.3333333333333333
+>>> q1.interact(q2)
+>>> q1.color
+"blue"
+>>> q2.color
+"red"
+"""
+
+print('*** Thinkful - Object Drills: Quarks ***')
+
+
+class Quark:
+    def __init__(self, color, flavor):
+        if self.verify_color(color):
+            self.color = color
+        if self.verify_flavor(flavor):
+            self.flavor = flavor
+        self.baryon_number = 1/3
+
+    @classmethod
+    def verify_color(cls, color):
+        if color not in ['red', 'blue', 'green']:
+            raise TypeError('wrong color')
+        else:
+            return color
+
+    @classmethod
+    def verify_flavor(cls, flavor):
+        if flavor not in ['up', 'down', 'strange', 'charm', 'top', 'bottom']:
+            raise TypeError('wrong flavor')
+        else:
+            return flavor
+
+    def interact(self, other):
+        self.color, other.color = other.color, self.color
+
+
+q1 = Quark("red", "up")
+print(q1.color)
+# "red"
+print(q1.flavor)
+# "up"
+q2 = Quark("blue", "strange")
+print(q2.color)
+#"blue"
+print(q2.baryon_number)
+# 0.3333333333333333
+q1.interact(q2)
+print(q1.color)
+#"blue"
+print(q2.color)
+# "red"
