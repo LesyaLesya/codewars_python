@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 """
 Convert boolean values to strings 'Yes' or 'No'.
 
@@ -396,3 +398,62 @@ def remove_every_other(my_list):
 
 print(remove_every_other([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 print(remove_every_other([[1, 2]]))
+
+
+"""
+Remove duplicates from list
+
+Define a function that removes duplicates from an array of non negative numbers and returns it as a result.
+
+The order of the sequence has to stay the same.
+
+Examples:
+
+Input -> Output
+[1, 1, 2] -> [1, 2]
+[1, 2, 1, 1, 3, 2] -> [1, 2, 3]
+"""
+
+print('*** Remove duplicates from list ***')
+
+
+def distinct(seq):
+    return list(OrderedDict.fromkeys(seq).keys())
+
+
+print(distinct([1, 1, 1, 2, 3, 4, 5]))
+
+
+"""
+Remove First and Last Character Part Two
+
+You are given a string containing a sequence of character sequences separated by commas.
+
+Write a function which returns a new string containing the same character 
+sequences except the first and the last ones but this time separated by spaces.
+
+If the input string is empty or the removal of the first and last items would cause 
+the resulting string to be empty, return an empty value (represented as a generic value NULL in the examples below).
+Examples
+
+"1,2,3"      =>  "2"
+"1,2,3,4"    =>  "2 3"
+"1,2,3,4,5"  =>  "2 3 4"
+
+""     =>  NULL
+"1"    =>  NULL
+"1,2"  =>  NULL
+"""
+
+print('*** Remove First and Last Character Part Two ***')
+
+
+def array(string):
+    return ' '.join(string.split(',')[1:-1]) or None
+
+
+print(array('1,2,3'))
+print(array('1,2,3,4'))
+print(array(''))
+print(array('1,2'))
+print(array('1'))

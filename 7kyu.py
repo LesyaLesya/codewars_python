@@ -1,6 +1,7 @@
 import itertools
 import collections
 import string
+import re
 
 """
 Descending Order
@@ -951,3 +952,163 @@ print(q1.color)
 #"blue"
 print(q2.color)
 # "red"
+
+
+"""
+Array element parity
+
+In this Kata, you will be given an array of integers whose elements have both a negative and a 
+positive value, except for one integer that is either only negative or only positive. 
+Your task will be to find that integer.
+
+Examples:
+
+[1, -1, 2, -2, 3] => 3
+
+3 has no matching negative appearance
+
+[-3, 1, 2, 3, -1, -4, -2] => -4
+
+-4 has no matching positive appearance
+
+[1, -1, 2, -2, 3, 3] => 3
+
+(the only-positive or only-negative integer may appear more than once)
+"""
+
+print('*** Array element parity ***')
+
+
+def solve(arr):
+    for i in arr:
+        if -i not in arr:
+            return i
+
+
+print(solve([1, -1, 2, -2, 3, 3]))
+
+
+"""
+Dropcaps
+
+DropCaps means that the first letter of the starting word of the paragraph should 
+be in caps and the remaining lowercase, just like you see in the newspaper.
+
+But for a change, let"s do that for each and every word of the given String. 
+Your task is to capitalize every word that has length greater than 2, leaving smaller words as they are.
+
+*should work also on Leading and Trailing Spaces and caps.
+
+"apple"            => "Apple"
+"apple of banana"  => "Apple of Banana"
+"one   space"      => "One   Space"
+"   space WALK   " => "   Space Walk   " 
+
+Note: you will be provided atleast one word and should take string as input and return string as output.
+"""
+
+print('*** Dropcaps ***')
+
+
+def drop_cap(words):
+    re_whitespace = re.compile(r'(\s+)')
+    l = re_whitespace.split(words)
+    for i in range(len(l)):
+        if len(l[i]) > 2:
+            l[i] = l[i].capitalize()
+    return ''.join(l)
+
+
+print(drop_cap('apple of banana'))
+print(drop_cap('   space WALK   '))
+
+
+"""
+What time is it?
+
+Given a time in AM/PM format as a string, convert it to 24-hour military time time as a string.
+
+Midnight is 12:00:00AM on a 12-hour clock, and 00:00:00 on a 24-hour clock. 
+Noon is 12:00:00PM on a 12-hour clock, and 12:00:00 on a 24-hour clock
+
+Try not to use built-in Date/Time libraries.
+Examples
+
+"07:05:45PM"  -->  "19:05:45"
+"12:00:01AM"  -->  "00:00:01"
+"11:46:47PM"  -->  "23:46:47"
+"""
+
+print('*** What time is it? ***')
+
+
+def get_military_time(time):
+    pm = {'12': '12', '01': '13', '02': '14', '03': '15', '04': '16', '05': '17', '06': '18', '07': '19',
+          '08': '20', '09': '21', '10': '22', '11': '23'}
+    am = {'12': '00', '01': '01', '02': '02', '03': '03', '04': '04', '05': '05', '06': '06', '07': '07',
+          '08': '08', '09': '09', '10': '10', '11': '11'}
+    am_pm = time[-2:]
+    hours = time[:2]
+    if am_pm == 'AM':
+        correct_hour = am.get(hours)
+    else:
+        correct_hour = pm.get(hours)
+    return correct_hour + time[2:-2]
+
+
+print(get_military_time('12:00:01AM'))
+print(get_military_time('11:46:47PM'))
+
+
+"""
+Is n divisible by (...)?
+
+Create a function that checks if the first argument n is divisible by all other 
+arguments (return true if no other arguments)
+
+Example:
+
+(6,1,3)--> true because 6 is divisible by 1 and 3
+(12,2)--> true because 12 is divisible by 2
+(100,5,4,10,25,20)--> true
+(12,7)--> false because 12 is not divisible by 7
+"""
+
+print('*** Is n divisible by (...)? ***')
+
+
+def is_divisible(*args):
+    first = args[0]
+    return all([first % args[i] == 0 for i in range(1, len(args))])
+
+
+print(is_divisible(3,3,4))
+print(is_divisible(12,3,4))
+print(is_divisible(8,3,4,2,5))
+
+
+"""
+Filter the number
+
+Filter the number
+
+Oh, no! The number has been mixed up with the text. Your goal is to retrieve 
+the number from the text, can you return the number back to its original state?
+Task
+
+Your task is to return a number from a string.
+Details
+
+You will be given a string of numbers and letters mixed up, you have to return all 
+the numbers in that string in the order they occur.
+"""
+
+print('*** Filter the number ***')
+
+
+def filter_string(string):
+    return int(''.join([i for i in string if i.isdigit()]))
+
+
+print(filter_string('a1b2c3'))
+print(filter_string('aa1bb2cc3dd'))
