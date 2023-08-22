@@ -457,3 +457,25 @@ print(array('1,2,3,4'))
 print(array(''))
 print(array('1,2'))
 print(array('1'))
+
+
+"""
+Double Char
+
+Given a string, you have to return a string in which each character (case-sensitive) is repeated once.
+Examples (Input -> Output):
+
+* "String"      -> "SSttrriinngg"
+* "Hello World" -> "HHeelllloo  WWoorrlldd"
+* "1234!_ "     -> "11223344!!__  "
+"""
+
+print('*** Double Char ***')
+
+
+def double_char(s):
+    return ''.join([i*2 for i in s])
+
+
+print(double_char('Hello World'))
+

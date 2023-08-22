@@ -1112,3 +1112,29 @@ def filter_string(string):
 
 print(filter_string('a1b2c3'))
 print(filter_string('aa1bb2cc3dd'))
+
+
+"""
+Tail Swap
+
+You'll be given a list of two strings, and each will contain exactly one colon (":") 
+in the middle (but not at beginning or end). The length of the strings, before and after the colon, are random.
+
+Your job is to return a list of two strings (in the same order as the original list), 
+but with the characters after each colon swapped.
+Examples
+
+["abc:123", "cde:456"]  -->  ["abc:456", "cde:123"]
+["a:12345", "777:xyz"]  -->  ["a:xyz", "777:12345"]
+"""
+
+print('*** Tail Swap ***')
+
+
+def tail_swap(strings):
+    l = [i.split(':') for i in strings]
+    l[0][1], l[1][1] = l[1][1], l[0][1]
+    return [':'.join(q) for q in l]
+
+
+print(tail_swap(['abc:123', 'cde:456']))
