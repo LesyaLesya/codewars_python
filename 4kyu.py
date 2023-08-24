@@ -1,4 +1,6 @@
 import itertools
+import re
+from collections import Counter
 
 """
 So Many Permutations!
@@ -30,3 +32,95 @@ def permutations(s):
 
 
 print(permutations('abc'))
+
+
+"""
+Most frequently used words in a text
+
+Write a function that, given a string of text (possibly with punctuation and line-breaks), returns an array 
+of the top-3 most occurring words, in descending order of the number of occurrences.
+Assumptions:
+
+    A word is a string of letters (A to Z) optionally containing one or more apostrophes (') in ASCII.
+    Apostrophes can appear at the start, middle or end of a word ('abc, abc', 'abc', ab'c are all valid)
+    Any other characters (e.g. #, \, / , . ...) are not part of a word and should be treated as whitespace.
+    Matches should be case-insensitive, and the words in the result should be lowercased.
+    Ties may be broken arbitrarily.
+    If a text contains fewer than three unique words, then either the top-2 or top-1 words should be returned, 
+    or an empty array if a text contains no words.
+
+Examples:
+
+top_3_words("In a village of La Mancha, the name of which I have no desire to call to
+mind, there lived not long since one of those gentlemen that keep a lance
+in the lance-rack, an old buckler, a lean hack, and a greyhound for
+coursing. An olla of rather more beef than mutton, a salad on most
+nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra
+on Sundays, made away with three-quarters of his income.")
+# => ["a", "of", "on"]
+
+top_3_words("e e e e DDD ddd DdD: ddd ddd aa aA Aa, bb cc cC e e e")
+# => ["e", "ddd", "aa"]
+
+top_3_words("  //wont won't won't")
+# => ["won't", "wont"]
+"""
+
+print('*** Most frequently used words in a text ***')
+
+
+def top_3_words(text):
+    string = re.findall(r"'*[a-z][a-z']*", text.lower())
+    return [i[0] for i in Counter(string).most_common(3)]
+
+
+print(top_3_words("a a a  b  c c  d d d d  e e e e e"))
+print(top_3_words("""In a village of La Mancha, the name of which I have no desire to call to
+        mind, there lived not long since one of those gentlemen that keep a lance
+        in the lance-rack, an old buckler, a lean hack, and a greyhound for
+        coursing. An olla of rather more beef than mutton, a salad on most
+        nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra
+        on Sundays, made away with three-quarters of his income."""))
+print(top_3_words("  , e   .. "))
+print(top_3_words("  //wont won't won't "))
+print(top_3_words("e e e e DDD ddd DdD: ddd ddd aa aA Aa, bb cc cC e e e"))
+
+
+"""
+Strip Comments
+
+Complete the solution so that it strips all text that follows any of a set of comment 
+markers passed in. Any whitespace at the end of the line should also be stripped out.
+
+Example:
+
+Given an input string of:
+
+apples, pears # and bananas
+grapes
+bananas !apples
+
+The output expected would be:
+
+apples, pears
+grapes
+bananas
+
+The code would be called like so:
+
+result = solution("apples, pears # and bananas\ngrapes\nbananas !apples", ["#", "!"])
+# result should == "apples, pears\ngrapes\nbananas"
+"""
+
+print('*** Strip Comments ***')
+
+
+def strip_comments(strng, markers):
+    l = strng.split('\n')
+    for i in markers:
+        l = [j.split(i)[0].rstrip() for j in l]
+    return '\n'.join(l)
+
+
+print(strip_comments('apples, pears # and bananas\ngrapes\nbananas !apples', ['#', '!']))
+print(strip_comments('a #b\nc\nd $e f g', ['#', '$']))
