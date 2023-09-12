@@ -479,3 +479,63 @@ def double_char(s):
 
 print(double_char('Hello World'))
 
+
+"""
+Counting sheep...
+
+Consider an array/list of sheep where some sheep may be missing from their place. We need a function that counts the number of sheep present in the array (true means present).
+
+For example,
+
+[true,  true,  true,  false,
+  true,  true,  true,  true ,
+  true,  false, true,  false,
+  true,  false, false, true ,
+  true,  true,  true,  true ,
+  false, false, true,  true]
+
+The correct answer would be 17.
+"""
+
+
+def count_sheeps(sheep):
+    return sheep.count(True)
+
+
+print(count_sheeps([True, True, False, True, True, False, True, False]))
+
+
+"""
+Flick Switch
+
+Task
+
+Create a function that always returns True for every item in a given list. 
+However, if an element is the word "flick", switch to always returning the opposite boolean value.
+Examples
+
+["codewars", "flick", "code", "wars"] ➞ [True, False, False, False]
+
+['flick', 'chocolate', 'adventure', 'sunshine'] ➞[False, False, False, False]
+
+['bicycle', 'jarmony', 'flick', 'sheep', 'flick'] ➞ [True, True, False, False, True]
+"""
+
+
+def flick_switch(lst):
+    l = []
+    flag = True
+    for i in lst:
+        if i == 'flick':
+            if flag is True:
+                flag = False
+            else:
+                flag = True
+            l.append(flag)
+        else:
+            l.append(flag)
+    return l
+
+
+print(flick_switch(["codewars", "flick", "code", "wars"]))
+print(flick_switch(['flick', 'chocolate', 'adventure', 'sunshine']))
