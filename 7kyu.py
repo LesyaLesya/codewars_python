@@ -1196,3 +1196,163 @@ def get_count(sentence):
 
 
 print(get_count('aeiou'))
+
+
+"""
+The animals went in two by two
+
+A great flood has hit the land, and just as in Biblical times we need to get the animals to the ark in pairs. 
+We are only interested in getting one pair of each animal, and not interested in any animals where there 
+are less than 2....they need to mate to repopulate the planet after all!
+
+You will be given a list of animals, which you need to check to see which animals there are at least two of, 
+and then return a dictionary containing the name of the animal along with the fact that there 
+are 2 of them to bring onto the ark.
+
+>>> two_by_two(['goat', 'goat', 'rabbit', 'rabbit', 'rabbit', 'duck', 'horse', 'horse', 'swan'])
+{'goat': 2, 'horse': 2, 'rabbit': 2}
+
+# If the list of animals is empty, return False as there are no animals to bring onto the ark and we are all doomed!!!
+>>> two_by_two([])
+False
+
+# If there are no pairs of animals, return an empty dictionary
+>>> two_by_two(['goat'])
+{}
+"""
+
+print('*** The animals went in two by two ***')
+
+
+def two_by_two(animals):
+    if len(animals) == 0: return False
+    return {i: 2 for i in animals if animals.count(i) >= 2}
+
+
+print(two_by_two([]))
+print(two_by_two(['goat']))
+print(two_by_two(["dog", "cat", "dog", "cat", "beaver", "cat"]))
+print(two_by_two(["goat", "goat", "rabbit", "rabbit", "rabbit", "duck", "horse", "horse", "swan"]))
+
+
+"""
+Double value every next call
+
+This kata is about static method that should return different values.
+On the first call it must be 1, on the second and others - it must be a double from previous value. 
+"""
+
+print('*** Double value every next call ***')
+
+
+class Class:
+    RES = 1
+
+    @staticmethod
+    def get_number():
+        r = Class.RES
+        Class.RES *= 2
+        return r
+
+
+print(Class().get_number()) #1
+print(Class().get_number()) #2
+print(Class().get_number()) #4
+print(Class().get_number()) #8
+
+
+"""
+User class for Banking System
+
+A company is opening a bank, but the coder who is designing the user class made some errors. 
+They need you to help them.
+
+You must include the following:
+Note: These are NOT steps to code the class
+
+    A withdraw method
+        Subtracts money from balance
+        One parameter, money to withdraw
+        Raise a ValueError if there isn't enough money to withdraw
+        Return a string with name and balance(see examples)
+
+    A check method
+        Adds money to balance
+        Two parameters, other user and money
+        Other user will always be valid
+        Raise a ValueError if other user doesn't have enough money
+        Raise a ValueError if checking_account isn't true for other user
+        Return a string with name and balance plus other name and other balance(see examples)
+
+    An add_cash method
+        Adds money to balance
+        One parameter, money to add
+        Return a string with name and balance(see examples)
+
+Additional Notes:
+
+    Checking_account should be stored as a boolean
+
+    No input numbers will be negative
+
+    Output must end with a period
+
+    Float numbers will not be used so, balance should be integer
+
+    No currency will be used
+
+Examples:
+
+Jeff = User('Jeff', 70, True)
+Joe = User('Joe', 70, False)
+
+Jeff.withdraw(2) # Returns 'Jeff has 68.'
+
+Joe.check(Jeff, 50) # Returns 'Joe has 120 and Jeff has 18.'
+
+Jeff.check(Joe, 80) # Raises a ValueError
+
+Joe.checking_account = True # Enables checking for Joe
+
+Jeff.check(Joe, 80) # Returns 'Jeff has 98 and Joe has 40'
+
+Joe.check(Jeff, 100) # Raises a ValueError
+
+Jeff.add_cash(20.00) # Returns 'Jeff has 118.'
+"""
+
+print('*** User class for Banking System ***')
+
+
+class User(object):
+    def __init__(self, name, balance, checking_account):
+        self.name = name
+        self.balance = balance
+        self.checking_account = checking_account
+
+    def withdraw(self, value):
+        self.balance = self.balance - value
+        if self.balance < 0:
+            raise ValueError("isn't enough money to withdraw")
+        return f'{self.name} has {self.balance}.'
+
+    def add_cash(self, value):
+        self.balance = self.balance + value
+        return f'{self.name} has {self.balance}.'
+
+    def check(self, other, value):
+        if not other.checking_account:
+            raise ValueError("is not valid")
+        if other.balance < value:
+            raise ValueError("isn't enough money to withdraw")
+        other.balance = other.balance - value
+        self.balance = self.balance + value
+        return f'{self.name} has {self.balance} and {other.name} has {other.balance}.'
+
+
+Jeff = User('Jeff', 70, True)
+Joe = User('Joe', 70, True)
+print(Jeff.withdraw(2))
+print(Joe.check(Jeff, 50))
+print(Jeff.check(Joe, 80))
+print(Jeff.add_cash(20))

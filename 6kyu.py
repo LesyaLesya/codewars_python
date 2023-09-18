@@ -939,3 +939,41 @@ print(name_in_str("Across the rivers", "chris"))
 print(name_in_str("Next to a lake", "chris"))
 print(name_in_str("A live son", "Allison"))
 print(name_in_str("A crew that boards the ship", "chris"))
+
+
+"""
+Kebabize
+
+Modify the kebabize function so that it converts a camel case string into a kebab case.
+
+"camelsHaveThreeHumps"  -->  "camels-have-three-humps"
+"camelsHave3Humps"  -->  "camels-have-humps"
+"CAMEL"  -->  "c-a-m-e-l"
+
+Notes:
+
+    the returned string should only contain lowercase letters
+"""
+
+print('*** Kebabize ***')
+
+
+def kebabize(st):
+    l = ''.join([i for i in st if i.isalpha()])
+    words = []
+    for i in range(len(l)):
+        if l[i].isupper():
+            if i == 0:
+                words.append(l[i].lower())
+            else:
+                words.append(':' + l[i].lower())
+        else:
+            words.append(l[i])
+    words = ((''.join(words)).split(':'))
+    return '-'.join(words)
+
+
+print(kebabize('myCamelCasedString'))
+print(kebabize('42'))
+print(kebabize('SOS'))
+print(kebabize('myCamelHas3Humps'))
