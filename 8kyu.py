@@ -539,3 +539,16 @@ def flick_switch(lst):
 
 print(flick_switch(["codewars", "flick", "code", "wars"]))
 print(flick_switch(['flick', 'chocolate', 'adventure', 'sunshine']))
+
+
+"""
+get ascii value of character
+
+Get ASCII value of a character.
+"""
+
+print('*** get ascii value of character ***')
+
+
+def get_ascii(ch: str) -> int:
+    return ord(ch)

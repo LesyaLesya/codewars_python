@@ -1356,3 +1356,76 @@ print(Jeff.withdraw(2))
 print(Joe.check(Jeff, 50))
 print(Jeff.check(Joe, 80))
 print(Jeff.add_cash(20))
+
+
+"""
+String Reordering
+
+The input will be an array of dictionaries.
+
+Return the values as a string-seperated sentence in the order of their keys' integer equivalent (increasing order).
+
+The keys are not reoccurring and their range is -999 < key < 999. The dictionaries' 
+keys & values will always be strings and will always not be empty.
+Example
+
+Input:
+List = [
+        {'4': 'dog' }, {'2': 'took'}, {'3': 'his'},
+        {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'}
+       ]
+
+Output:
+'Vatsan took his dog for a spin'
+"""
+
+print('*** String Reordering ***')
+
+
+def sentence(lst):
+    d = {int(key): value for i in lst for key, value in i.items()}
+    return ' '.join(i[1] for i in sorted(d.items()))
+
+
+print(sentence([{'1': 'dog'}, {'2': 'took'}, {'4': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'}]))
+print(sentence([
+        {'4': 'dog' }, {'2': 'took'}, {'3': 'his'},
+        {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'}
+       ]))
+
+"""
+Reverse the bits in an integer
+
+Write a function that reverses the bits in an integer.
+
+For example, the number 417 is 110100001 in binary. Reversing the binary is 100001011 which is 267.
+
+You can assume that the number is not negative.
+"""
+
+print('*** Reverse the bits in an integer ***')
+
+
+def reverse_bits(n):
+    return int(''.join(reversed(list(str(bin(n)).split('b')[1]))), 2)
+
+
+print(reverse_bits(417))
+
+
+"""
+Sum a list but ignore any duplicates
+
+Please write a function that sums a list, but ignores any duplicate items in the list.
+
+For instance, for the list [3, 4, 3, 6] , the function should return 10.
+"""
+
+print('*** Sum a list but ignore any duplicates ***')
+
+
+def sum_no_duplicates(l):
+    return sum([i for i in l if l.count(i) == 1])
+
+
+print(sum_no_duplicates([3, 4, 3, 6]))
