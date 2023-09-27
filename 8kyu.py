@@ -552,3 +552,17 @@ print('*** get ascii value of character ***')
 
 def get_ascii(ch: str) -> int:
     return ord(ch)
+
+
+"""
+Fake Binary
+"""
+
+print('*** Fake Binary ***')
+
+
+def fake_bin(x):
+    return ''.join('0' if int(i) < 5 else '1' for i in x)
+
+
+print(fake_bin("45385593107843568"))

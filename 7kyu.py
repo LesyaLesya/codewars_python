@@ -1429,3 +1429,230 @@ def sum_no_duplicates(l):
 
 
 print(sum_no_duplicates([3, 4, 3, 6]))
+
+
+"""
+Swapping Cards
+
+Two players draw a pair of numbered cards so that both players can form a 2 digit number. 
+A winner can be decided if one player's number is larger than the other.
+
+However, there is a rule where a player can swap any one of their cards with any one of the other 
+player's cards in a gamble to get a higher number! Note that it is illegal to swap the order of 
+your own cards. That means if you draw a 1 then a 9, you cannot swap them to get 91.
+
+Paul's strategy is to always swap his lowest number with the opponent's ten's digit. 
+Return whether this results in Paul winning the round.
+
+    n1 is Paul's number
+    n2 is his opponent's number
+
+Worked Example
+
+(41, 79) ➞ true
+# Paul's lowest number is 1
+# The opponent's ten's digit is 7
+# After the swap: 47 > 19
+# Paul wins the round
+
+Notes
+
+    If both of Paul's digits are the same, swap the ten's digit with the opponent's (paul likes to live riskily).
+    The cards don't include the number 0.
+    11 <= All numbers <= 99 (excluding numbers containing 0)
+"""
+
+print('*** Swapping Cards ***')
+
+
+def swap_cards(n1, n2):
+    pauls_nums = list(str(n1))
+    opponent_nums = list(str(n2))
+    if pauls_nums[0] == pauls_nums[1]:
+        pauls_nums[0], opponent_nums[0] = opponent_nums[0], pauls_nums[0]
+    else:
+        pauls_min = pauls_nums.index(min(pauls_nums))
+        pauls_nums[pauls_min], opponent_nums[0] = opponent_nums[0], pauls_nums[pauls_min]
+    return ''.join(pauls_nums) > ''.join(opponent_nums)
+
+
+print(swap_cards(41, 98))
+print(swap_cards(67, 53))
+print(swap_cards(77, 54))
+
+
+"""
+From A to Z
+
+Given a string indicating a range of letters, return a string which includes all the letters in that range, 
+including the last letter. Note that if the range is given in capital letters, return the string in capitals also!
+Examples
+
+gimme_the_letters("a-z") ➞ "abcdefghijklmnopqrstuvwxyz"
+
+gimme_the_letters("h-o") ➞ "hijklmno"
+
+gimme_the_letters("Q-Z") ➞ "QRSTUVWXYZ"
+
+gimme_the_letters("J-J") ➞ J"
+"""
+
+print('*** From A to Z ***')
+
+
+def gimme_the_letters(sp):
+    letters = string.ascii_lowercase if sp[0] >= 'a' else string.ascii_uppercase
+    sp_start = sp[0]
+    sp_end = sp[-1]
+    return ''.join(i for i in letters[letters.index(sp_start):letters.index(sp_end)+1])
+
+
+print(gimme_the_letters("a-z"))
+print(gimme_the_letters("h-o"))
+print(gimme_the_letters("Q-Z"))
+
+
+"""
+Refactored Greeting
+
+The following code could use a bit of object-oriented artistry. 
+While it's a simple method and works just fine as it is, in a larger system it's 
+best to organize methods into classes/objects. (Or, at least, something similar depending on your language)
+
+Refactor the following code so that it belongs to a Person class/object. 
+Each Person instance will have a greet method. The Person instance should be instantiated 
+with a name so that it no longer has to be passed into each greet method call.
+
+Here is how the final refactored code would be used:
+
+joe = Person('Joe')
+joe.greet('Kate') # should return 'Hello Kate, my name is Joe'
+joe.name          # should == 'Joe'
+"""
+
+
+class Person:
+    def __init__(self, name):
+        self.__name = name
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, name):
+        self.__name = name
+
+    def greet(self, gname):
+        return f"Hello {gname}, my name is {self.name}"
+
+
+p = Person('Jack')
+print(p.name)
+print(p.greet('Kate'))
+
+
+"""
+Number of Decimal Digits
+
+Determine the total number of digits in the integer (n>=0) given as input to the function. 
+For example, 9 is a single digit, 66 has 2 digits and 128685 has 6 digits. Be careful to avoid overflows/underflows.
+"""
+
+print('*** Number of Decimal Digits ***')
+
+
+def digits(n):
+    return len(str(n))
+
+
+print(digits(9876543210))
+
+
+"""
+Odd or Even?
+
+Given a list of integers, determine whether the sum of its elements is odd or even.
+
+Give your answer as a string matching "odd" or "even".
+
+If the input array is empty consider it as: [0] (array with a zero).
+Examples:
+
+Input: [0]
+Output: "even"
+
+Input: [0, 1, 4]
+Output: "odd"
+
+Input: [0, -1, -5]
+Output: "even"
+"""
+
+print('*** Odd or Even? ***')
+
+
+def odd_or_even(arr):
+    s = sum(arr)
+    return 'even' if s == 0 or s % 2 == 0 else 'odd'
+
+
+print(odd_or_even([0]))
+print(odd_or_even([0, 1, 4]))
+
+
+"""
+Building Strings From a Hash
+
+Complete the solution so that it takes the object (JavaScript/CoffeeScript) or 
+hash (ruby) passed in and generates a human readable string from its key/value pairs.
+
+The format should be "KEY = VALUE". Each key/value pair should be separated by a comma except for the last pair.
+
+Example:
+
+solution({"a": 1, "b": '2'}) # should return "a = 1,b = 2"
+"""
+
+print('*** Building Strings From a Hash ***')
+
+
+def solution(pairs):
+    return ','.join(sorted([f'{key} = {value}' for key, value in pairs.items()]))
+
+
+print(solution({'a': 1, 'b': 2})) # should return "a = 1,b = 2"
+
+
+"""
+Minimum Steps (Array Series #6)
+
+minimumSteps({1, 10, 12, 9, 2, 3}, 6)  ==>  return (2)
+
+Explanation:
+
+    We add two smallest elements (1 + 2), their sum is 3 .
+
+    Then we add the next smallest number to it (3 + 3) , so the sum becomes 6 .
+
+    Now the result is greater or equal to 6 , Hence the output is (2) i.e (2) operations are required to do this .
+"""
+
+print('*** Minimum Steps (Array Series #6) ***')
+
+
+def minimum_steps(numbers, value):
+    numbers.sort()
+    count = 0
+    s = numbers[0]
+    if value < s: return 0
+    for i in range(1, len(numbers)+1):
+        s += numbers[i]
+        count += 1
+        if s >= value:
+            return count
+
+
+print(minimum_steps([4,6,3], 7))
+print(minimum_steps([19,98,69,28,75,45,17,98,67], 464))
+print(minimum_steps([4,6,3], 2))

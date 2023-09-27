@@ -1008,3 +1008,31 @@ print(find_it([0]))
 print(find_it([1,1,2]))
 print(find_it([0,1,0,1,0]))
 print(find_it([1,2,2,3,3,3,4,3,3,3,2,2,1]))
+
+
+"""
+Split Strings
+
+Complete the solution so that it splits the string into pairs of two characters. 
+If the string contains an odd number of characters then it should replace the missing 
+second character of the final pair with an underscore ('_').
+
+Examples:
+
+* 'abc' =>  ['ab', 'c_']
+* 'abcdef' => ['ab', 'cd', 'ef']
+"""
+
+print('*** Split Strings ***')
+
+
+def solution(s):
+    res = [s[i:i+2] for i in range(0, len(s), 2)]
+    for i in range(len(res)):
+        if len(res[i]) == 1:
+            res[i] += '_'
+    return res
+
+
+print(solution("asdfadsf"))
+print(solution("asdfads"))
