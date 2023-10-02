@@ -1656,3 +1656,189 @@ def minimum_steps(numbers, value):
 print(minimum_steps([4,6,3], 7))
 print(minimum_steps([19,98,69,28,75,45,17,98,67], 464))
 print(minimum_steps([4,6,3], 2))
+
+
+"""
+Initialize my name
+
+Some people just have a first name; some people have first and last names and some 
+people have first, middle and last names.
+
+You task is to initialize the middle names (if there is any).
+Examples
+
+'Jack Ryan'                   => 'Jack Ryan'
+'Lois Mary Lane'              => 'Lois M. Lane'
+'Dimitri'                     => 'Dimitri'
+'Alice Betty Catherine Davis' => 'Alice B. C. Davis'
+"""
+
+print('*** Initialize my name ***')
+
+
+def initialize_names(name):
+    l = name.split()
+    l[1:-1] = map(lambda x: f'{x[0]}.', l[1:-1])
+    return ' '.join(l)
+
+
+print(initialize_names('Jack Ryan'))
+print(initialize_names('Alice Betty Catherine Davis'))
+
+
+"""
+Decompose single strand DNA into 3 reading frames
+
+
+Input
+
+In a single strand of DNA you find 3 Reading frames, take for example the following input sequence:
+
+AGGTGACACCGCAAGCCTTATATTAGC
+
+Output
+
+For the output we are going to take the combinations and show them in the following manner:
+
+Frame 1: AGG TGA CAC CGC AAG CCT TAT ATT AGC
+Frame 2: A GGT GAC ACC GCA AGC CTT ATA TTA GC
+Frame 3: AG GTG ACA CCG CAA GCC TTA TAT TAG C
+"""
+
+print('*** Decompose single strand DNA into 3 reading frames ***')
+
+
+def decompose_single_strand(single_strand):
+    frame_1 = ' '.join([single_strand[i:i+3] for i in range(0, len(single_strand), 3)])
+    frame_2 = single_strand[0] + ' ' + ' '.join([single_strand[i:i+3] for i in range(1, len(single_strand), 3)])
+    frame_3 = single_strand[:2] + ' ' + ' '.join([single_strand[i:i + 3] for i in range(2, len(single_strand), 3)])
+    return f'Frame 1: {frame_1}\nFrame 2: {frame_2}\nFrame 3: {frame_3}'
+
+
+print(decompose_single_strand('AGGTGACACCGCAAGCCTTATATTAGC'))
+
+
+"""
+String matchup
+
+Example
+
+array1 = ['abc', 'abc', 'xyz', 'cde', 'uvw']
+array2 = ['abc', 'cde', 'uap']
+
+How many times do the elements in array2 appear in array1?
+
+    'abc' appears twice in the first array (2)
+    'cde' appears only once (1)
+    'uap' does not appear in the first array (0)
+
+Therefore, solve(array1, array2) = [2, 1, 0]
+"""
+
+print('*** String matchup ***')
+
+
+def solve(a, b):
+    return [a.count(i) for i in b]
+
+
+print(solve(['abc', 'abc', 'xyz', 'abcd', 'cde'], ['abc', 'cde', 'uap']))
+
+
+"""
+Number Pairs
+
+In this Kata the aim is to compare each pair of integers from 2 arrays, and return a new array of large numbers.
+
+Note: Both arrays have the same dimensions.
+
+Example:
+
+arr1 = [13, 64, 15, 17, 88]
+arr2 = [23, 14, 53, 17, 80]
+get_larger_numbers(arr1, arr2) == [23, 64, 53, 17, 88]
+"""
+
+print('*** Number Pairs ***')
+
+
+def get_larger_numbers(a, b):
+    return [a[i] if a[i] > b[i] else b[i] for i in range(len(a))]
+
+
+print(get_larger_numbers([13, 64, 15, 17, 88], [23, 14, 53, 17, 80]))
+
+
+"""
+Check three and two
+
+Given an array with exactly 5 strings "a", "b" or "c" (chars in Java, characters in Fortran), 
+check if the array contains three and two of the same values.
+Examples
+
+["a", "a", "a", "b", "b"] ==> true  // 3x "a" and 2x "b"
+["a", "b", "c", "b", "c"] ==> false // 1x "a", 2x "b" and 2x "c"
+["a", "a", "a", "a", "a"] ==> false // 5x "a"
+
+"""
+
+print('*** Check three and two ***')
+
+
+def check_three_and_two(array):
+    s = set(array)
+    return {array.count(i) for i in s} == {2, 3}
+
+
+print(check_three_and_two(["a", "a", "a", "b", "b"]))
+print(check_three_and_two(["a", "c", "a", "c", "b"]))
+print(check_three_and_two(["a", "a", "a", "a", "a"]))
+
+
+"""
+Inspiring Strings
+
+When given a string of space separated words, return the word with the longest length. 
+If there are multiple words with the longest length, return the last instance of the word with the longest length.
+
+Example:
+
+'red white blue' //returns string value of white
+
+'red blue gold' //returns gold
+"""
+
+print('*** Inspiring Strings ***')
+
+
+def longest_word(string_of_words):
+    return (sorted(string_of_words.split(), key=len))[-1]
+
+
+print(longest_word('a b c d each'))
+print(longest_word('each step'))
+
+
+"""
+Powers of 3
+
+Given a positive integer N, return the largest integer k such that 3^k < N.
+
+For example,
+
+largest_power(3) == 0
+largest_power(4) == 1
+"""
+
+print('*** Powers of 3 ***')
+
+
+def largest_power(N):
+    i = 0
+    while 3 ** i < N:
+        i += 1
+    return i - 1
+
+
+print(largest_power(2))
+print(largest_power(4))
