@@ -1842,3 +1842,133 @@ def largest_power(N):
 
 print(largest_power(2))
 print(largest_power(4))
+
+
+"""
+Number of Divisions
+
+Example
+
+For example the number 6 can be divided by 2 two times:
+
+1. 6 / 2 = 3
+2. 3 / 2 = 1 remainder = 1
+"""
+
+print('*** Number of Divisions ***')
+
+
+def divisions(n, divisor):
+    count = 0
+    while divisor <= n:
+        n = int(n / divisor)
+        count += 1
+    return count
+
+
+print(divisions(6, 2))
+print(divisions(2, 3))
+print(divisions(5, 5))
+print(divisions(2450, 5))
+
+
+"""
+Dominant array elements
+
+An element in an array is dominant if it is greater than all elements to its right. 
+You will be given an array and your task will be to return a list of all dominant elements. For example:
+
+solve([1,21,4,7,5]) = [21,7,5] because 21, 7 and 5 are greater than elments to their right. 
+solve([5,4,3,2,1]) = [5,4,3,2,1]
+
+Notice that the last element is always included. All numbers will be greater than 0.
+"""
+
+print('*** Dominant array elements ***')
+
+
+def solve(arr):
+    res = []
+    for i in range(len(arr)):
+        if all([arr[i] > j for j in arr[i+1:]]):
+            res.append(arr[i])
+    return res
+
+
+print(solve([16,17,14,3,14,5,2]))
+
+
+"""
+Find the lucky numbers
+
+Write a function filterLucky/filter_lucky() that accepts a list of integers and filters the 
+list to only include the elements that contain the digit 7.
+
+For example,
+
+ghci> filterLucky [1,2,3,4,5,6,7,68,69,70,15,17]
+[7,70,17]
+"""
+
+print('*** Find the lucky numbers ***')
+
+
+def filter_lucky(lst):
+    return [i for i in lst if '7' in str(i)]
+
+
+print(filter_lucky([1,2,3,4,5,6,7,68,69,70,15,17]))
+
+
+"""
+Ordering the words!
+
+"hello world" => " dehllloorw"
+"bobby"       => "bbboy"
+""            => "Invalid String!"
+"!Hi You!"    => " !!HYiou"
+"""
+
+print('*** Ordering the words! ***')
+
+
+def order_word(s):
+    if not s: return "Invalid String!"
+    return ''.join(sorted(s))
+
+
+print(order_word("hello world"))
+print(order_word(''))
+
+
+"""
+Simple letter removal
+
+- first remove all letter 'a', followed by letter 'b', then 'c', etc...
+- remove the leftmost character first.
+
+For example: 
+solve('abracadabra', 1) = 'bracadabra' # remove the leftmost 'a'.
+solve('abracadabra', 2) = 'brcadabra'  # remove 2 'a' from the left.
+solve('abracadabra', 6) = 'rcdbr'      # remove 5 'a', remove 1 'b' 
+solve('abracadabra', 8) = 'rdr'
+solve('abracadabra',50) = ''
+"""
+
+print('*** Simple letter removal ***')
+
+
+def solve(st,k):
+    letters = string.ascii_lowercase
+    for i in letters:
+        count = st.count(i)
+        if count <= k:
+            st = st.replace(i, '')
+            k -= count
+        else:
+            st = st.replace(i, '', k)
+            break
+    return st
+
+
+print(solve('abracadabra', 1))
