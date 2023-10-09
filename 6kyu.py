@@ -1036,3 +1036,129 @@ def solution(s):
 
 print(solution("asdfadsf"))
 print(solution("asdfads"))
+
+
+"""
+Simple Fun #15: Addition without Carrying
+
+ A little boy is studying arithmetics. He has just learned how to add two integers, 
+ written one below another, column by column. But he always forgets about the important part - carrying.
+
+Given two integers, find the result which the little boy will get.
+Example
+
+For param1 = 456 and param2 = 1734, the output should be 1180
+
+    456
+   1734
++ ____
+   1180
+
+The little boy goes from right to left:
+
+6 + 4 = 10 but the little boy forgets about 1 and just writes down 0 in the last column
+
+5 + 3 = 8
+
+4 + 7 = 11 but the little boy forgets about the leading 1 and just writes down 1 under 4 and 7.
+
+There is no digit in the first number corresponding to the leading digit of the second one, 
+so the little boy imagines that 0 is written before 456. Thus, he gets 0 + 1 = 1
+"""
+
+print('*** Simple Fun #15: Addition without Carrying ***')
+
+
+def addition_without_carrying(a,b):
+    str_a = str(a)
+    str_b = str(b)
+    if len(str_a) > len(str_b):
+        diff = len(str_a) - len(str_b)
+        str_b = '0' * diff + str_b
+    elif len(str_a) < len(str_b):
+        diff = len(str_b) - len(str_a)
+        str_a = '0' * diff + str_a
+    return int(''.join([str(int(x) + int(y))[-1] for x, y in zip(str_a, str_b)]))
+
+
+print(addition_without_carrying(999,999))
+print(addition_without_carrying(456,1734))
+print(addition_without_carrying(99999,0))
+
+
+"""
+Calculate String Rotation
+
+ Write a function that receives two strings and returns n, where n is equal to the number of 
+ characters we should shift the first string forward to match the second. The check should be case sensitive.
+
+For instance, take the strings "fatigue" and "tiguefa". In this case, the first string has been 
+rotated 5 characters forward to produce the second string, so 5 would be returned.
+If the second string isn't a valid rotation of the first string, the method returns -1.
+Examples:
+
+"coffee", "eecoff" => 2
+"eecoff", "coffee" => 4
+"moose", "Moose" => -1
+"isn't", "'tisn" => 2
+"Esham", "Esham" => 0
+"dog", "god" => -1
+"""
+
+print('*** Calculate String Rotation ***')
+
+
+def shifted_diff(first, second):
+    if first == second: return 0
+    for i in range(len(first)):
+        res = first[i+1:] + first[:i+1]
+        if res == second:
+            return len(first[i+1:])
+    return -1
+
+
+print(shifted_diff("eecoff", "coffee"))
+print(shifted_diff("Moose","moose"))
+print(shifted_diff("isn't","'tisn"))
+
+
+"""
+Simple Fun #110: Array Operations
+
+ You are given an array of integers a and a non-negative number of operations k, 
+ applied to the array. Each operation consists of two parts:
+
+find the maximum element value of the array;
+replace each element a[i] with (maximum element value - a[i]).```
+How will the array look like after `k` such operations?
+
+# Example
+
+ For `a = [-4, 0, -1, 0]` and `k = 2`, the output should be `[0, 4, 3, 4]`.
+
+initial array: [-4, 0, -1, 0] 1st operation: find the maximum value --> 0 replace each element: --> 
+[(0 - -4), (0 - 0), (0 - -1), (0 - 0)] --> [4, 0, 1, 0] 2nd operation: find the maximum value --> 
+4 replace each element: --> [(4 - 4), (4 - 0), (4 - 1), (4 - 0)] --> [0, 4, 3, 4]
+
+For `a = [0, -1, 0, 0, -1, -1, -1, -1, 1, -1]` and `k = 1`, 
+
+the output should be `[1, 2, 1, 1, 2, 2, 2, 2, 0, 2]`.
+
+initial array: [0, -1, 0, 0, -1, -1, -1, -1, 1, -1] 1st operation: find the maximum value --> 
+1 replace each element: --> [(1-0),(1- -1),(1-0),(1-0),(1- -1),(1- -1),(1- -1),(1- -1),(1-1),(1- -1)] --> 
+[1, 2, 1, 1, 2, 2, 2, 2, 0, 2]
+"""
+
+print('*** Simple Fun #110: Array Operations ***')
+
+
+def array_operations(a, k):
+    MAX = max(a)
+    res = [MAX - i for i in a]
+    for i in range((k-1)%2):
+        MAX = max(res)
+        res = [MAX - i for i in res]
+    return res
+
+
+print(array_operations([-4, 0, -1, 0],2))
