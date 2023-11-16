@@ -1162,3 +1162,29 @@ def array_operations(a, k):
 
 
 print(array_operations([-4, 0, -1, 0],2))
+
+
+"""
+Are we alternate?
+
+Create a function isAlt() that accepts a string as an argument and validates whether the vowels (a, e, i, o, u) 
+and consonants are in alternate order.
+
+is_alt("amazon")  # True
+is_alt("apple")   # False
+is_alt("banana")  # True
+"""
+
+print('*** Are we alternate? ***')
+
+
+def is_alt(s):
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    even = [value for idx, value in enumerate(s) if idx % 2 == 0]
+    odd = [value for idx, value in enumerate(s) if idx % 2 != 0]
+    return (all(i in vowels for i in even) and all(i not in vowels for i in odd)) or \
+           (all(i in vowels for i in odd) and all(i not in vowels for i in even))
+
+
+print(is_alt('amazon'))
+print(is_alt('orange'))

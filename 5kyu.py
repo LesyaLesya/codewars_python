@@ -363,3 +363,22 @@ print(pick_peaks([3,2,3,6,4,1,2,3,2,1,2,2,2,1]))
 print(pick_peaks([2,1,3,1,2,2,2,2,1]))
 print(pick_peaks([2,1,3,1,2,2,2,2]))
 print(pick_peaks([1,1,1,1]))
+
+
+"""
+Moving Zeros To The End
+
+move_zeros([1, 0, 1, 2, 0, 1, 3]) # returns [1, 1, 2, 1, 3, 0, 0]
+"""
+
+print('*** Moving Zeros To The End ***')
+
+
+def move_zeros(lst):
+    zeros = lst.count(0)
+    res = [i for i in lst if i != 0]
+    res.extend([0]*zeros)
+    return res
+
+
+print(move_zeros([1, 0, 1, 2, 0, 1, 3]))

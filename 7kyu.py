@@ -1972,3 +1972,308 @@ def solve(st,k):
 
 
 print(solve('abracadabra', 1))
+
+
+"""
+Fizz Buzz
+
+Return an array containing the numbers from 1 to N, where N is the parametered value.
+
+Replace certain values however if any of the following conditions are met:
+
+    If the value is a multiple of 3: use the value "Fizz" instead
+    If the value is a multiple of 5: use the value "Buzz" instead
+    If the value is a multiple of 3 & 5: use the value "FizzBuzz" instead
+
+N will never be less than 1.
+
+Method calling example:
+
+fizzbuzz(3) -->  [1, 2, "Fizz"]
+"""
+
+print('*** Fizz Buzz ***')
+
+
+def fizzbuzz(n):
+    res = []
+    for i in range(1, n+1):
+        if i % 3 == 0 and i % 5 == 0:
+            res.append('FizzBuzz')
+        elif i % 5 == 0:
+            res.append('Buzz')
+        elif i % 3 == 0:
+            res.append('Fizz')
+        else:
+            res.append(i)
+    return res
+
+
+print(fizzbuzz(15))
+
+
+"""
+Concatenated Sum
+
+original number =2997 , n=3
+2997 = 222+999+999+777 and here each digit is concatenated three times.
+
+original number=-2997 , n=3
+
+-2997 = -222-999-999-777 and here each digit is concatenated three times
+"""
+
+print('*** Concatenated Sum ***')
+
+
+def check_concatenated_sum(n, t):
+    x = sum([int(i * t if t > 1 else i) for i in list(str(abs(n)))])
+    return True if x == abs(n) else False
+
+
+print(check_concatenated_sum(2997, 3))
+print(check_concatenated_sum(-198, 2))
+print(check_concatenated_sum(198, 0))
+
+
+"""
+Alphabetize a list by the nth character 
+
+Write a function that accepts two parameters, i) a string (containing a list of words) and ii) an integer (n). 
+The function should alphabetize the list based on the nth letter of each word.
+
+The letters should be compared case-insensitive. If both letters are the same, order them normally 
+(lexicographically), again, case-insensitive.
+
+Example:
+
+sort_it('bid, zag', 2) #=> 'zag, bid'
+"""
+
+print('*** Alphabetize a list by the nth character ***')
+
+
+def sort_it(words, n):
+    l = words.split(', ')
+    return ', '.join(sorted(l, key=lambda x: x[n-1]))
+
+
+print(sort_it('bill, bell, ball, bull', 2))
+
+
+"""
+Alternate capitalization
+
+Given a string, capitalize the letters that occupy even indexes and odd indexes separately, 
+and return as shown below. Index 0 will be considered even.
+
+For example, capitalize("abcdef") = ['AbCdEf', 'aBcDeF']. See test cases for more examples.
+
+The input will be a lowercase string with no spaces.
+"""
+
+print('*** Alternate capitalization ***')
+
+
+def capitalize(s):
+    l = list(s)
+    res = []
+    even = ''.join([value.upper() if idx % 2 == 0 else value.lower() for idx, value in enumerate(l)])
+    odd = ''.join([value.upper() if idx % 2 != 0 else value.lower() for idx, value in enumerate(l)])
+    res.append(even)
+    res.append(odd)
+    return res
+
+
+print(capitalize('abcdef'))
+
+
+"""
+Alphabet symmetry
+
+Consider the word "abode". We can see that the letter a is in position 1 and b is in position 2. 
+In the alphabet, a and b are also in positions 1 and 2. Notice also that d and e in abode occupy 
+the positions they would occupy in the alphabet, which are positions 4 and 5.
+
+Given an array of words, return an array of the number of letters that occupy their positions 
+in the alphabet for each word. For example,
+
+solve(["abode","ABc","xyzD"]) = [4, 3, 1]
+"""
+
+print('*** Alphabet symmetry ***')
+
+
+def solve(strings : list[str]) -> list[int]:
+    letters = {'a': 0, 'b': 1, 'c': 2, 'd':3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8, 'j': 9, 'k': 10, 'l': 11,
+               'm': 12, 'n': 13, 'o': 14, 'p': 15, 'q': 16, 'r': 17, 's': 18, 't': 19, 'u': 20, 'v': 21, 'w': 22,
+               'x': 23, 'y': 24, 'z': 25}
+    count = 0
+    res = []
+    for i in strings:
+        for idx, letter in enumerate(i.lower()):
+            if idx == letters[letter]:
+                count += 1
+        res.append(count)
+        count = 0
+    return res
+
+
+print(solve(["abode","ABc","xyzD"]))
+
+
+"""
+Sorting Dictionaries
+
+Python dictionaries are inherently unsorted. So what do you do if you need to sort the contents of a dictionary?
+
+Create a function that returns a sorted list of (key, value) tuples (Javascript: arrays of 2 items).
+
+The list must be sorted by the value and be sorted largest to smallest.
+Examples
+
+sort_dict({3:1, 2:2, 1:3}) == [(1,3), (2,2), (3,1)]
+sort_dict({1:2, 2:4, 3:6}) == [(3,6), (2,4), (1,2)]
+"""
+
+print('*** Sorting Dictionaries ***')
+
+
+def sort_dict(d):
+    return list(sorted(d.items(), key=lambda x: x[1], reverse=True))
+
+
+print(sort_dict({1:2, 2:4, 3:6}))
+
+
+"""
+ReOrdering
+
+>>> re_ordering('ming Yao')
+'Yao ming'
+
+>>> re_ordering('Mano donowana')
+'Mano donowana'
+
+>>> re_ordering('wario LoBan hello')
+'LoBan wario hello'
+
+>>> re_ordering('bull color pig Patrick')
+'Patrick bull color pig'
+"""
+
+print('*** ReOrdering ***')
+
+
+def re_ordering(text):
+    l = text.split()
+    el = [value for idx, value in enumerate(l) if value[0].isupper()]
+    l.remove(el[0])
+    return ' '.join(el + l)
+
+
+print(re_ordering('wario LoBan hello'))
+print(re_ordering('bull color pig Patrick'))
+
+
+"""
+Closest to Zero
+
+[2, 4, -1, -3]  => -1
+[5, 2, -2]      => None
+[5, 2, 2]       => 2
+[13, 0, -6]     => 0
+"""
+
+
+def closest(lst):
+    m = min(lst, key=lambda x: abs(x))
+    if not m or -m not in lst:
+        return m
+
+
+print(closest([2, 4, -1, -3]))
+print(closest([5, 2, -2]))
+print(closest([5, 2, 2]))
+print(closest([5, -5, -2, 5, -3]))
+print(closest([5, 1, -1, 2, -10]))
+
+
+"""
+List Filtering
+
+filter_list([1,2,'a','b']) == [1,2]
+filter_list([1,'a','b',0,15]) == [1,0,15]
+filter_list([1,2,'aasf','1','123',123]) == [1,2,123]
+"""
+
+print('*** List Filtering ***')
+
+
+def filter_list(l):
+    return [i for i in l if type(i) is int]
+
+
+print(filter_list([1, 2, 'a', 'b', '1']))
+
+
+"""
+Only one
+
+ only_one() == False
+  only_one(True, False, False) == True
+  only_one(True, False, False, True) == False
+  only_one(False, False, False, False) == False  
+"""
+
+print('*** Only one ***')
+
+
+def only_one(*args):
+    return args.count(True) == 1
+
+
+print(only_one(True, False))
+
+
+"""
+Case-sensitive!
+
+Your task is very simple. Given an input string s, case_sensitive(s), check whether all letters are lowercase or not. 
+Return True/False and a list of all the entries that are not lowercase in order of their appearance in s.
+
+For example, case_sensitive('codewars') returns [True, []], but case_sensitive('codeWaRs') returns [False, ['W', 'R']].
+"""
+
+print('*** Case-sensitive! ***')
+
+
+def case_sensitive(s):
+    letters = [i for i in s if i.isupper()]
+    return [True if len(letters) == 0 else False, letters]
+
+
+print(case_sensitive('asd'))
+print(case_sensitive('cellS'))
+
+
+"""
+Is it a vowel on this position?
+
+{
+checkVowel('cat', 1)  ->   true // 'a' is a vowel
+checkVowel('cat', 0)  ->   false // 'c' is not a vowel
+checkVowel('cat', 4)  ->   false // this position doesn't exist
+}
+"""
+
+print('*** Is it a vowel on this position? ***')
+
+
+def check_vowel(strng, position):
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    return True if len(strng)-1 >= position >= 0 and strng[position].lower() in vowels else False
+
+
+print(check_vowel('cat', 1))
+print(check_vowel('Amanda', 0))
