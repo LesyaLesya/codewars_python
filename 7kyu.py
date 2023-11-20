@@ -2277,3 +2277,75 @@ def check_vowel(strng, position):
 
 print(check_vowel('cat', 1))
 print(check_vowel('Amanda', 0))
+
+
+"""
+The @ operator
+
+I invented a new operator, @, which is left associative.
+
+a @ b = (a + b) + (a - b) + (a * b) + (a // b)
+
+Side note: ~~ is shorthand for Math.floor.
+
+Given a string containing only integers and the operators, find out the value of that string.
+
+The strings will always be "well formed", meaning with a space on each side of the operators, except in TypeScript, where string may appear like this: 0@1@2
+
+1 @ 1 = (1 + 1) + (1 - 1) + (1 * 1) + (1 // 1) = 4
+3 @ 2 = 13
+6 @ 9 = 66
+
+4 @ -4 = -9\
+1 @ 1 @ -4 = -9 (1 @ 1 is 4, 4 @ -4 is -9)
+2 @ 2 @ 2 = 40
+0 @ 1 @ 2 = 0
+5 @ 0 = None
+"""
+
+print('The @ operator')
+
+
+def operator(a, b):
+    return (a + b) + (a - b) + (a * b) + (a // b) if a != 0 or b != 0 else None
+
+
+def evaluate(equation):
+    l = list(map(int, (equation.split(' @ '))))
+    try:
+        res = operator(l[0], l[1])
+        for i in l[2:]:
+            res = operator(res, i)
+        return res
+    except Exception:
+        return None
+
+
+print(evaluate('1 @ 1'))
+print(evaluate('1 @ 1 @ -4'))
+
+
+"""
+Sort by Example
+
+Example:
+
+Arr: [1,3,4,4,4,4,5]
+
+Example Arr: [4,1,2,3,5]
+
+Result: [4,4,4,4,1,3,5]
+"""
+
+
+def example_sort(arr, example_arr):
+    # your code here
+    res = []
+    for i in example_arr:
+        for j in arr:
+            if j == i:
+                res.append(i)
+    return res
+
+
+print(example_sort([1,3,4,4,4,4,5], [4,1,2,3,5]))

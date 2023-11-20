@@ -596,3 +596,36 @@ def square_or_square_root(arr):
 
 
 print(square_or_square_root([4, 3, 9, 7, 2, 1 ]))
+
+
+"""
+Is it a number?
+
+isDigit("3")
+isDigit("  3  ")
+isDigit("-3.23")
+
+should return false:
+
+isDigit("3-4")
+isDigit("  3   5")
+isDigit("3 5")
+isDigit("zero")
+"""
+
+print('*** Is it a number? ***')
+
+
+def is_digit(s):
+    try:
+        float(s.strip())
+        return True
+    except:
+        return False
+
+
+print(is_digit('3'))
+print(is_digit('  3  '))
+print(is_digit('-3.23'))
+print(is_digit('3-4'))
+print(is_digit(' 3  5'))

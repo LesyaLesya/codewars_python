@@ -1188,3 +1188,78 @@ def is_alt(s):
 
 print(is_alt('amazon'))
 print(is_alt('orange'))
+
+
+"""
+Highest Rank Number in an Array
+
+Complete the method which returns the number which is most frequent in the given input array. 
+If there is a tie for most frequent number, return the largest number among them.
+
+Note: no empty arrays will be given.
+Examples
+
+[12, 10, 8, 12, 7, 6, 4, 10, 12]              -->  12
+[12, 10, 8, 12, 7, 6, 4, 10, 12, 10]          -->  12
+[12, 10, 8, 8, 3, 3, 3, 3, 2, 4, 10, 12, 10]  -->   3
+"""
+
+
+print('*** Highest Rank Number in an Array ***')
+
+
+def highest_rank(arr):
+    if len(arr) == len(set(arr)): return max(arr)
+    return max(sorted(arr, reverse=True), key=arr.count)
+
+
+print(highest_rank([12, 10, 8, 8, 3, 3, 3, 3, 2, 4, 10, 12, 10]))
+print(highest_rank([1, 1, 2, 2, 3]))
+
+
+"""
+Sort Arrays (Ignoring Case)
+
+["Hello", "there", "I'm", "fine"]  -->  ["fine", "Hello", "I'm", "there"]
+["C", "d", "a", "B"])              -->  ["a", "B", "C", "d"]
+"""
+
+print('*** Sort Arrays (Ignoring Case) ***')
+
+
+def sortme(words):
+    return sorted(words, key=lambda x: x.lower())
+
+
+print(sortme(["C", "d", "a", "B"]))
+
+
+"""
+Sort the odd
+
+[7, 1]  =>  [1, 7]
+[5, 8, 6, 3, 4]  =>  [3, 8, 6, 5, 4]
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]  =>  [1, 8, 3, 6, 5, 4, 7, 2, 9, 0]
+"""
+
+print('*** Sort the odd ***')
+
+
+def sort_array(source_array):
+    odd = []
+    res = []
+    for i in source_array[:]:
+        if i % 2 != 0:
+            odd.append(i)
+            res.append('odd')
+        else:
+            res.append(i)
+    for i in sorted(odd):
+        idx = res.index('odd')
+        res[idx] = i
+
+    return res
+
+
+print(sort_array([5, 8, 6, 3, 4]))
+print(sort_array([1, 3, 5, 11, 2, 8, 4]))
