@@ -2349,3 +2349,85 @@ def example_sort(arr, example_arr):
 
 
 print(example_sort([1,3,4,4,4,4,5], [4,1,2,3,5]))
+
+
+"""
+Largest Elements
+
+Write a program that outputs the top n elements from a list.
+
+Example:
+
+largest(2, [7,6,5,4,3,2,1])
+# => [6,7]
+"""
+
+print('*** Largest Elements ***')
+
+
+def largest(n, xs):
+    """Find the n highest elements in a list"""
+    return (sorted(xs, reverse=True)[:n])[::-1]
+
+
+print(largest(2, [7,6,5,4,3,2,1]))
+
+
+"""
+Simple Fun #20: First Reverse Try
+
+Example
+
+For arr = [1, 2, 3, 4, 5], the output should be [5, 2, 3, 4, 1]
+"""
+
+print('*** Simple Fun #20: First Reverse Try ***')
+
+
+def first_reverse_try(arr):
+    if len(arr) <= 1: return arr
+    arr[0], arr[-1] = arr[-1], arr[0]
+    return arr
+
+
+print(first_reverse_try([1, 2, 3, 4, 5]))
+
+
+"""
+Slice the middle of a list backwards
+
+Write a function that takes a list of at least four elements as an argument and 
+returns a list of the middle two or three elements in reverse order.
+"""
+
+print('*** Slice the middle of a list backwards ***')
+
+
+def reverse_middle(lst):
+    if len(lst) % 2 == 0:
+        l = len(lst) // 2
+        return (lst[l-1:l+1])[::-1]
+    else:
+        l = len(lst) // 2
+        return (lst[l-1:l+2])[::-1]
+
+
+print(reverse_middle([1, 2, 3, 4, 5]))
+
+
+"""
+Smallest value of an array
+
+min([1,2,3,4,5], 'value') // => 1
+min([1,2,3,4,5], 'index') // => 0
+"""
+
+print('*** Smallest value of an array ***')
+
+
+def find_smallest(numbers, to_return):
+    return min(numbers) if to_return == 'value' else numbers.index(min(numbers))
+
+
+print(find_smallest([5,4,3,2,1],"value"))
+print(find_smallest([5,4,3,2,1],"index"))

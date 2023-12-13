@@ -1263,3 +1263,57 @@ def sort_array(source_array):
 
 print(sort_array([5, 8, 6, 3, 4]))
 print(sort_array([1, 3, 5, 11, 2, 8, 4]))
+
+
+"""
+Proof Read 
+
+You've just finished writing the last chapter for your novel when a virus suddenly infects your document. 
+It has swapped the 'i's and 'e's in 'ei' words and capitalised random letters. Write a function which will:
+
+a) remove the spelling errors in 'ei' words. (Example of 'ei' words: their, caffeine, deceive, weight)
+
+b) only capitalise the first letter of each sentence. Make sure the rest of the sentence is in lower case.
+
+Example: He haD iEght ShOTs of CAffIEne. --> He had eight shots of caffeine.
+"""
+
+
+print('*** Proof Read ***')
+
+
+def proofread(st):
+    return '. '.join(list(map(lambda x: x.lower().replace('ie', 'ei').capitalize(), st.split('. '))))
+
+
+print(proofread("THe neIghBour's ceiLing FEll on His Head. The WiEght of It crusHed him To thE gROuNd."))
+
+
+"""
+String array duplicates
+
+For example:
+
+    dup(["abracadabra","allottee","assessee"]) = ["abracadabra","alote","asese"].
+
+    dup(["kelless","keenness"]) = ["keles","kenes"].
+"""
+
+print('*** String array duplicates ***')
+
+
+def dup(arry):
+    res = []
+    for i in arry:
+        s = ''
+        previous = None
+        for j in i:
+            if j != previous:
+                s += j
+            previous = j
+        res.append(s)
+    return res
+
+
+print(dup(["eklless","keenness"]))
+print(dup(["abracadabra","allottee","assessee"]))
