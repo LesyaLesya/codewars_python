@@ -4,6 +4,7 @@ import collections
 import sys
 from time import sleep
 import time
+from collections import OrderedDict
 
 """
 Detect Pangram
@@ -1317,3 +1318,130 @@ def dup(arry):
 
 print(dup(["eklless","keenness"]))
 print(dup(["abracadabra","allottee","assessee"]))
+
+
+"""
+Alphabetized
+
+alphabetized("The Holy Bible") # "BbeehHilloTy"
+"""
+
+print('*** Alphabetized ***')
+
+
+def alphabetized(s):
+    letters = ''.join(sorted([i for i in s if i.isalpha()], key=lambda s: s.lower()))
+    return letters
+
+
+print(alphabetized("The Holy Bible"))
+print(alphabetized(""))
+print(alphabetized("CodeWars can't Load Today"))
+print(alphabetized(" a"))
+print(alphabetized("!@$%^&*()_+=-`,"))
+
+
+"""
+Organise duplicate numbers in list
+
+group([3, 2, 6, 2, 1, 3])
+>>> [[3, 3], [2, 2], [6], [1]]
+"""
+
+
+print('*** Organise duplicate numbers in list ***')
+
+
+def group(arr):
+    lst = [[i]*arr.count(i) for i in arr]
+    res = []
+    for i in lst:
+        if i not in res:
+            res.append(i)
+    return res
+
+
+print(group([3, 2, 6, 2, 1, 3]))
+
+
+"""
+Compare Versions
+
+compare_versions("11", "10");                    # returns True
+compare_versions("11", "11");                    # returns True
+compare_versions("10.4.6", "10.4");              # returns True
+compare_versions("10.4", "11");                  # returns False
+compare_versions("10.4", "10.10");               # returns False
+compare_versions("10.4.9", "10.5");              # returns False
+"""
+
+print('*** Compare Versions ***')
+
+
+def compare_versions(version1,version2):
+    ver1 = [int(i) for i in version1.split('.')]
+    ver2 = [int(i) for i in version2.split('.')]
+    return ver1 >= ver2
+
+
+print(compare_versions("11", "10"))
+print(compare_versions("11", "11"))
+print(compare_versions("10.4.6", "10.4"))
+print(compare_versions("10.4", "11"))
+print(compare_versions("10.4", "10.10"))
+
+
+"""
+More Zeros than Ones
+
+'abcde' === ["1100001", "1100010", "1100011", "1100100", "1100101"]
+               True       True       False      True       False
+                   
+        --> ['a','b','d']
+    
+'DIGEST'--> ['D','I','E','T']
+"""
+
+print('*** More Zeros than Ones ***')
+
+
+def more_zeros(s):
+    s = list(OrderedDict.fromkeys(s).keys())
+    res = []
+    for i in s:
+        b = (bin(int.from_bytes(i.encode(), 'big')))[2:]
+        if b.count('0') > b.count('1'):
+            res.append(i)
+    return res
+
+
+print(more_zeros('abcde'))
+print(more_zeros('thequickbrownfoxjumpsoverthelazydog'))
+print(more_zeros('Forgiveness is the fragrance that the violet sheds on the heal that has crushed it'))
+print(more_zeros('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_'))
+
+
+"""
+Is Integer Array?
+
+    returns true  / True if every element in an array is an integer or a float with no decimals.
+    returns true  / True if array is empty.
+    returns false / False for every other input.
+"""
+
+print('*** Is Integer Array? ***')
+
+
+def is_int_array(arr):
+    return isinstance(arr, list) and all(isinstance(i, (int, float)) and i == int(i) for i in arr)
+
+
+print(is_int_array([]))
+print(is_int_array([1, 2, 3, 4]))
+print(is_int_array([1.2, 1.8, 3]))
+print(is_int_array([1.0, 2.0, 3.0]))
+print(is_int_array(None))
+print(is_int_array(""))
+print(is_int_array([1, 2, 3, None]))
+print(is_int_array(["-1"]))
+print(is_int_array([-11, -12, -13, -14]))

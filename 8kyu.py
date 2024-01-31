@@ -1,4 +1,5 @@
 import re
+import random
 from collections import OrderedDict
 
 """
@@ -710,3 +711,73 @@ class Ship:
 
 worthy_ship = Ship(100,20)
 print(worthy_ship.is_worth_it())
+
+
+"""
+Finish Guess the Number Game
+
+Imagine you are creating a game where the user has to guess the correct number. 
+But there is a limit of how many guesses the user can do.
+
+    If the user tries to guess more than the limit, the function should throw an error.
+    If the user guess is right it should return true.
+    If the user guess is wrong it should return false and lose a life.
+
+Can you finish the game so all the rules are met?
+"""
+
+print('*** Finish Guess the Number Game ***')
+
+
+class Guesser:
+    def __init__(self, number, lives):
+        self.number = number
+        self.lives = lives
+
+    def guess(self, n):
+        if self.lives > 0:
+            if n == self.number:
+                return True
+            else:
+                self.lives -= 1
+                return False
+        else:
+            raise("Omae wa mo shindeiru")
+
+
+guesser = Guesser(10, 2)
+print(guesser.guess(1))
+print(guesser.guess(2))
+
+guesser_2 = Guesser(10, 2)
+print(guesser.guess(10))
+print(guesser.guess(10))
+
+
+"""
+Color Ghost
+
+Create a class Ghost
+
+Ghost objects are instantiated without any arguments.
+
+Ghost objects are given a random color attribute of "white" or "yellow" or "purple" or "red" 
+when instantiated
+
+ghost = Ghost()
+ghost.color  #=> "white" or "yellow" or "purple" or "red"
+"""
+
+
+print('*** Color Ghost ***')
+
+
+class Ghost(object):
+    COLORS = ["white", "yellow", "purple", "red"]
+
+    def __init__(self):
+        self.color = random.choice(Ghost.COLORS)
+
+
+ghosts = [Ghost().color for _ in range(100)]
+print(ghosts)
