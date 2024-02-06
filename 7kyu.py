@@ -2452,3 +2452,91 @@ def in_asc_order(arr):
 print(in_asc_order([2, 1]))
 print(in_asc_order([9,8,7,6,5,4,3,2,1]))
 print(in_asc_order([1,2,3,4,5]))
+
+
+"""
+Odd Ones Out!
+
+odd_ones_out([1, 2, 3, 1, 3, 3]) = [1, 1]
+
+In the above example:
+
+    the number 1 appears twice
+    the number 2 appears once
+    the number 3 appears three times
+
+2 and 3 both appear an odd number of times, so they are removed from the list. The final result is: [1,1]
+
+Here are more examples:
+
+odd_ones_out([1, 1, 2, 2, 3, 3, 3]) = [1, 1, 2, 2]
+odd_ones_out([26, 23, 24, 17, 23, 24, 23, 26]) = [26, 24, 24, 26]
+odd_ones_out([1, 2, 3]) = []
+odd_ones_out([1]) = []
+"""
+
+print('*** Odd Ones Out! ***')
+
+
+def odd_ones_out(numbers):
+    return [i for i in numbers if numbers.count(i) % 2 == 0]
+
+
+print(odd_ones_out([1, 1, 2, 2, 3, 3, 3]))
+print(odd_ones_out([1, 2, 3]))
+
+
+"""
+Rotate for a Max
+
+
+Take a number: 56789. Rotate left, you get 67895.
+
+Keep the first digit in place and rotate left the other digits: 68957.
+
+Keep the first two digits in place and rotate the other ones: 68579.
+
+Keep the first three digits and rotate left the rest: 68597. Now it is over since keeping the first 
+four it remains only one digit which rotated is itself.
+
+You have the following sequence of numbers:
+
+56789 -> 67895 -> 68957 -> 68579 -> 68597
+
+and you must return the greatest: 68957.
+"""
+
+print('*** Rotate for a Max ***')
+
+
+def max_rot(n):
+    lst = list(str(n))
+    res = [n]
+    for i in range(len(lst)):
+        lst.append(lst.pop(i))
+        res.append(int(''.join(lst)))
+    return max(res)
+
+
+print(max_rot(56789))
+
+
+"""
+Sum of array singles
+
+In this Kata, you will be given an array of numbers in which two numbers occur 
+once and the rest occur only twice. Your task will be to return the sum of the numbers that occur only once.
+
+For example, repeats([4,5,7,5,4,8]) = 15 because only the numbers 7 and 8 occur once, 
+and their sum is 15. Every other number occurs twice.
+"""
+
+
+print('*** Sum of array singles ***')
+
+
+def repeats(arr):
+    return sum([i for i in arr if arr.count(i) == 1])
+
+
+print(repeats([4,5,7,5,4,8]))

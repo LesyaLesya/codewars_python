@@ -781,3 +781,21 @@ class Ghost(object):
 
 ghosts = [Ghost().color for _ in range(100)]
 print(ghosts)
+
+
+"""
+Invert values
+
+invert([1,2,3,4,5]) == [-1,-2,-3,-4,-5]
+invert([1,-2,3,-4,5]) == [-1,2,-3,4,-5]
+invert([]) == []
+"""
+
+print('*** Invert values ***')
+
+
+def invert(lst):
+    return [-i for i in lst]
+
+
+print(invert([1,-2,3,-4,5]))
