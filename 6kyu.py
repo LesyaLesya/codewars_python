@@ -1445,3 +1445,36 @@ print(is_int_array(""))
 print(is_int_array([1, 2, 3, None]))
 print(is_int_array(["-1"]))
 print(is_int_array([-11, -12, -13, -14]))
+
+
+"""
+Duplicate Arguments
+
+Complete the solution so that it returns true if it contains any duplicate argument values. 
+Any number of arguments may be passed into the function.
+
+The array values passed in will only be strings or numbers. The only valid return values are true and false.
+
+Examples:
+
+solution(1, 2, 3)             -->  false
+solution(1, 2, 3, 2)          -->  true
+solution('1', '2', '3', '2')  -->  true
+"""
+
+print('*** Duplicate Arguments ***')
+
+
+def duplicate_arguments(*args):
+    for i in args:
+        if args.count(i) > 1:
+            return True
+        else:
+            continue
+    return False
+
+
+print(duplicate_arguments(1, 2, 3, 1, 2))
+print(duplicate_arguments())
+print(duplicate_arguments('a', 'b'))
+print(duplicate_arguments('a', 'b', 'c', 'd', 'e', 'f', 'f', 'b'))

@@ -2540,3 +2540,88 @@ def repeats(arr):
 
 
 print(repeats([4,5,7,5,4,8]))
+
+
+"""
+Shortest Word
+
+Simple, given a string of words, return the length of the shortest word(s).
+
+String will never be empty and you do not need to account for different data types.
+"""
+
+print('*** Shortest Word ***')
+
+
+def find_short(s):
+    return len((sorted([i for i in s.split(' ')], key=len))[0])
+
+
+print(find_short("bitcoin take over the world maybe who knows perhaps"))
+
+
+"""
+Is that a real phone number? (British version)
+
+Your task is to write a function that verifies whether a given string 
+contains a valid British mobile (cell) phone number or not.
+
+If valid, return 'In with a chance'.
+
+If invalid, or if you're given an empty string, return 'Plenty more fish in the sea'.
+
+A number can be valid in the following ways:
+
+Here in the UK mobile numbers begin with '07' followed by 9 other digits, e.g. '07454876120'.
+
+Sometimes the number is preceded by the country code, the prefix '+44', which replaces the '0' in ‘07’,
+ e.g. '+447454876120'.
+
+And sometimes you will find numbers with dashes in-between digits or on either side, e.g. '+44--745---487-6120' 
+or '-074-54-87-61-20-'. As you can see, dashes may be consecutive.
+"""
+
+print('*** Is that a real phone number? (British version) ***')
+
+
+def validate_number(st):
+    st = st.replace('-', '')
+    if (st.startswith('07') and len(st[2:]) == 9) or (st.startswith('+447') and len(st[4:]) == 9):
+        return 'In with a chance'
+    return 'Plenty more fish in the sea'
+
+
+print(validate_number("07454876120"))
+print(validate_number("-07599-51-4555"))
+print(validate_number("0754876120"))
+print(validate_number("+447+4435512555"))
+print(validate_number("0745--487-61-20"))
+
+
+"""
+Guess the Word: Count Matching Letters
+
+count_correct_characters("dog", "car"); #0 (No letters are in the correct position)
+count_correct_characters("dog", "god"); #1 ("o")
+count_correct_characters("dog", "cog"); #2 ("o" and "g")
+count_correct_characters("dog", "cod"); #1 ("o")
+count_correct_characters("dog", "bog"); #2 ("o" and "g")
+count_correct_characters("dog", "dog"); #3 (Correct!)
+"""
+
+print('*** Guess the Word: Count Matching Letters ***')
+
+
+def count_correct_characters(correct, guess):
+    l1, l2 = len(correct), len(guess)
+    if l1 != l2:
+        raise 'error'
+    res = 0
+    for i in range(l1):
+        if correct[i] == guess[i]:
+            res += 1
+    return res
+
+
+print(count_correct_characters("dog", "car"))
+print(count_correct_characters("dog", "dog"))
