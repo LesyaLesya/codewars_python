@@ -2652,3 +2652,52 @@ def remove_smallest(numbers):
 
 
 print(remove_smallest([1,2,3,4,5]))
+
+
+"""
+Consecutive items
+
+You are given a list of unique integers arr, and two integers a and b. 
+Your task is to find out whether or not a and b appear consecutively in arr, and return a boolean value 
+(True if a and b are consecutive, False otherwise).
+
+It is guaranteed that a and b are both present in arr.
+"""
+
+print('*** Consecutive items ***')
+
+
+def consecutive(arr, a, b):
+    aa = arr.index(a)
+    bb = arr.index(b)
+    return abs(aa-bb) == 1
+
+
+print(consecutive([1, 3, 5, 7], 3, 7))
+print(consecutive([1, 3, 5, 7], 3, 1))
+
+
+"""
+Possibilities Array
+
+A non-empty array a of length n is called an array of all possibilities if it contains 
+all numbers between [0,a.length-1].Write a method named isAllPossibilities that accepts an integer array 
+and returns true if the array is an array of all possibilities, else false.
+
+Example:
+
+a=[1,2,0,3]
+a.length-1=3 
+a includes [0,3] ,hence the function should return true
+"""
+
+print('*** Possibilities Array ***')
+
+
+def is_all_possibilities(arr):
+    if len(arr) == 0: return False
+    return sorted(arr) == [i for i in range(len(arr))]
+
+
+print(is_all_possibilities([0,2,19,4,4]))
+print(is_all_possibilities([3,2,1,0]))
