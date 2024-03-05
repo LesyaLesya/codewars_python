@@ -2701,3 +2701,149 @@ def is_all_possibilities(arr):
 
 print(is_all_possibilities([0,2,19,4,4]))
 print(is_all_possibilities([3,2,1,0]))
+
+
+"""
+String Reversing, Changing case, etc.
+
+Given 2 string parameters, show a concatenation of:
+
+    the reverse of the 2nd string with inverted case; e.g Fish -> HSIf
+    a separator in between both strings: @@@
+    the 1st string reversed with inverted case and then mirrored; e.g Water -> RETAwwATER 
+"""
+
+print('*** String Reversing, Changing case, etc. ***')
+
+
+def reverse_and_mirror(s1, s2):
+    s1_1 = ' '.join(list(map(lambda x: x.swapcase()[::-1], s1.split(' ')[::-1])))
+    s1_2 = ' '.join(list(map(lambda x: x.swapcase(), s1.split(' '))))
+    s2 = ' '.join(list(map(lambda x: x.swapcase()[::-1], s2.split(' ')[::-1])))
+    return f'{s2}@@@{s1_1}{s1_2}'
+
+
+print(reverse_and_mirror('FizZ', 'buZZ'))
+print(reverse_and_mirror("way to inVert","caSe of string"))
+print(reverse_and_mirror('String Reversing', 'Changing Case'))
+
+
+"""
+Naughty or Nice
+
+Santa is coming to town and he needs your help finding out who's been naughty or nice. 
+You will be given an entire year of JSON data following this format:
+
+{
+    January: {
+        '1': 'Naughty','2': 'Naughty', ..., '31': 'Nice'
+    },
+    February: {
+        '1': 'Nice','2': 'Naughty', ..., '28': 'Nice'
+    },
+    ...
+    December: {
+        '1': 'Nice','2': 'Nice', ..., '31': 'Naughty'
+    }
+}
+
+Your function should return "Naughty!" or "Nice!" depending on the total number of 
+occurrences in a given year (whichever one is greater). If both are equal, return "Nice!"
+"""
+
+print('*** Naughty or Nice ***')
+
+
+def naughty_or_nice(data):
+    naughty = 0
+    nice = 0
+    for i, j in data.items():
+        for m, k in j.items():
+            if k == "Naughty":
+                naughty += 1
+            else:
+                nice += 1
+    return "Naughty!" if naughty > nice else "Nice!"
+
+
+print(naughty_or_nice(
+    {"January": {"1": "Naughty", "2": "Nice", "3": "Naughty", "4": "Nice", "5": "Nice",
+                 "6": "Nice", "7": "Naughty", "8": "Nice", "9": "Nice", "10": "Naughty", "11": "Nice",
+                 "12": "Nice", "13": "Nice", "14": "Naughty", "15": "Naughty", "16": "Naughty", "17": "Nice",
+                 "18": "Nice", "19": "Naughty", "20": "Nice", "21": "Naughty", "22": "Nice", "23": "Naughty",
+                 "24": "Nice", "25": "Naughty", "26": "Nice", "27": "Nice", "28": "Naughty", "29": "Nice",
+                 "30": "Nice", "31": "Nice"},
+     "February": {"1": "Nice", "2": "Naughty", "3": "Nice", "4": "Nice", "5": "Nice", "6": "Nice", "7": "Nice",
+                  "8": "Nice", "9": "Naughty", "10": "Naughty", "11": "Naughty", "12": "Nice", "13": "Nice",
+                  "14": "Naughty", "15": "Naughty", "16": "Nice", "17": "Nice", "18": "Naughty", "19": "Nice",
+                  "20": "Nice", "21": "Nice", "22": "Nice", "23": "Nice", "24": "Naughty", "25": "Naughty",
+                  "26": "Nice", "27": "Naughty", "28": "Nice"},
+     "March": {"1": "Nice", "2": "Naughty", "3": "Nice", "4": "Nice", "5": "Nice", "6": "Naughty", "7": "Nice",
+               "8": "Nice", "9": "Nice", "10": "Naughty", "11": "Naughty", "12": "Nice", "13": "Naughty",
+               "14": "Naughty", "15": "Naughty", "16": "Nice", "17": "Nice", "18": "Nice", "19": "Naughty",
+               "20": "Nice", "21": "Naughty", "22": "Naughty", "23": "Nice", "24": "Nice", "25": "Nice",
+               "26": "Nice", "27": "Nice", "28": "Naughty", "29": "Nice", "30": "Nice", "31": "Naughty"},
+     "April": {"1": "Naughty", "2": "Naughty", "3": "Nice", "4": "Nice", "5": "Nice", "6": "Naughty",
+               "7": "Naughty", "8": "Nice", "9": "Nice", "10": "Nice", "11": "Nice", "12": "Nice",
+               "13": "Naughty", "14": "Nice", "15": "Naughty", "16": "Naughty", "17": "Nice", "18": "Naughty",
+               "19": "Nice", "20": "Naughty", "21": "Naughty", "22": "Nice", "23": "Nice", "24": "Naughty",
+               "25": "Nice", "26": "Naughty", "27": "Naughty", "28": "Nice", "29": "Nice", "30": "Nice"},
+     "May": {"1": "Nice", "2": "Naughty", "3": "Naughty", "4": "Nice", "5": "Nice", "6": "Nice", "7": "Naughty",
+             "8": "Nice", "9": "Nice", "10": "Nice", "11": "Naughty", "12": "Naughty", "13": "Naughty",
+             "14": "Naughty", "15": "Nice", "16": "Naughty", "17": "Naughty", "18": "Nice", "19": "Nice",
+             "20": "Nice", "21": "Nice", "22": "Nice", "23": "Naughty", "24": "Naughty", "25": "Nice",
+             "26": "Nice", "27": "Nice", "28": "Naughty", "29": "Naughty", "30": "Naughty", "31": "Nice"},
+     "June": {"1": "Naughty", "2": "Nice", "3": "Naughty", "4": "Nice", "5": "Naughty", "6": "Nice",
+              "7": "Nice", "8": "Nice", "9": "Nice", "10": "Naughty", "11": "Naughty", "12": "Nice",
+              "13": "Nice", "14": "Naughty", "15": "Nice", "16": "Naughty", "17": "Naughty", "18": "Naughty",
+              "19": "Nice", "20": "Nice", "21": "Nice", "22": "Nice", "23": "Nice", "24": "Nice",
+              "25": "Nice", "26": "Nice", "27": "Nice", "28": "Nice", "29": "Naughty", "30": "Nice"},
+     "July": {"1": "Nice", "2": "Nice", "3": "Nice", "4": "Naughty", "5": "Nice", "6": "Nice", "7": "Nice",
+              "8": "Nice", "9": "Naughty", "10": "Nice", "11": "Nice", "12": "Naughty", "13": "Nice",
+              "14": "Naughty", "15": "Nice", "16": "Nice", "17": "Naughty", "18": "Nice", "19": "Naughty",
+              "20": "Nice", "21": "Nice", "22": "Nice", "23": "Nice", "24": "Naughty", "25": "Naughty",
+              "26": "Nice", "27": "Naughty", "28": "Naughty", "29": "Nice", "30": "Nice", "31": "Nice"},
+     "August": {"1": "Naughty", "2": "Nice", "3": "Naughty", "4": "Nice", "5": "Nice", "6": "Nice", "7": "Nice",
+                "8": "Nice", "9": "Naughty", "10": "Naughty", "11": "Nice", "12": "Naughty", "13": "Nice",
+                "14": "Naughty", "15": "Nice", "16": "Nice", "17": "Naughty", "18": "Nice", "19": "Naughty",
+                "20": "Nice", "21": "Nice", "22": "Naughty", "23": "Naughty", "24": "Naughty", "25": "Naughty",
+                "26": "Nice", "27": "Nice", "28": "Nice", "29": "Naughty", "30": "Naughty", "31": "Nice"},
+     "September": {"1": "Naughty", "2": "Nice", "3": "Naughty", "4": "Nice", "5": "Nice", "6": "Nice", "7": "Nice",
+                   "8": "Naughty", "9": "Naughty", "10": "Nice", "11": "Naughty", "12": "Naughty", "13": "Nice",
+                   "14": "Naughty", "15": "Nice", "16": "Nice", "17": "Nice", "18": "Nice", "19": "Nice",
+                   "20": "Naughty", "21": "Nice", "22": "Nice", "23": "Nice", "24": "Nice", "25": "Nice",
+                   "26": "Naughty", "27": "Nice", "28": "Nice", "29": "Naughty", "30": "Nice"},
+     "October": {"1": "Nice", "2": "Naughty", "3": "Naughty", "4": "Naughty", "5": "Naughty", "6": "Nice",
+                 "7": "Nice", "8": "Naughty", "9": "Nice", "10": "Nice", "11": "Naughty", "12": "Nice",
+                 "13": "Nice", "14": "Nice", "15": "Nice", "16": "Nice", "17": "Naughty", "18": "Naughty",
+                 "19": "Nice", "20": "Nice", "21": "Naughty", "22": "Nice", "23": "Nice", "24": "Naughty",
+                 "25": "Nice", "26": "Nice", "27": "Nice", "28": "Naughty", "29": "Naughty", "30": "Nice", "31": "Nice"},
+     "November": {"1": "Naughty", "2": "Nice", "3": "Naughty", "4": "Nice", "5": "Nice", "6": "Nice", "7": "Nice",
+                  "8": "Nice", "9": "Nice", "10": "Nice", "11": "Nice", "12": "Naughty", "13": "Naughty",
+                  "14": "Naughty", "15": "Naughty", "16": "Nice", "17": "Naughty", "18": "Nice", "19": "Nice",
+                  "20": "Nice", "21": "Naughty", "22": "Naughty", "23": "Nice", "24": "Naughty", "25": "Naughty",
+                  "26": "Nice", "27": "Nice", "28": "Nice", "29": "Nice", "30": "Naughty"},
+     "December": {"1": "Nice", "2": "Nice", "3": "Nice", "4": "Naughty", "5": "Nice", "6": "Naughty", "7": "Nice",
+                  "8": "Naughty", "9": "Nice", "10": "Naughty", "11": "Naughty", "12": "Naughty", "13": "Naughty",
+                  "14": "Naughty", "15": "Naughty", "16": "Nice", "17": "Nice", "18": "Nice", "19": "Naughty",
+                  "20": "Nice", "21": "Naughty", "22": "Naughty", "23": "Nice", "24": "Nice", "25": "Naughty",
+                  "26": "Nice", "27": "Nice", "28": "Nice", "29": "Nice", "30": "Nice", "31": "Nice"}}))
+
+
+"""
+Is it a letter?
+
+Write function isItLetter or is_it_letter which tells us if given character is a uppercase or lowercase letter.
+"""
+
+
+print('*** Is it a letter? ***')
+
+
+def is_it_letter(s):
+    return s.isalpha()
+
+
+print(is_it_letter('1'))
+print(is_it_letter('!'))
+print(is_it_letter('a'))

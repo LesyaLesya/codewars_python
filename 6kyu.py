@@ -1478,3 +1478,24 @@ print(duplicate_arguments(1, 2, 3, 1, 2))
 print(duplicate_arguments())
 print(duplicate_arguments('a', 'b'))
 print(duplicate_arguments('a', 'b', 'c', 'd', 'e', 'f', 'f', 'b'))
+
+
+"""
+Simple frequency sort
+
+In this kata, you will sort elements in an array by decreasing frequency of elements. 
+If two elements have the same frequency, sort them by increasing value.
+
+solve([2,3,5,3,7,9,5,3,7]) = [3,3,3,5,5,7,7,2,9]
+-- We sort by highest frequency to lowest frequency.
+-- If two elements have same frequency, we sort by increasing value.
+"""
+
+print('*** Simple frequency sort ***')
+
+
+def frequency_sort(arr):
+    return [item for items, c in collections.Counter(sorted(arr)).most_common() for item in [items] * c]
+
+
+print(frequency_sort([2,3,5,3,7,9,5,3,7]))
