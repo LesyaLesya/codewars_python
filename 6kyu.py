@@ -1499,3 +1499,42 @@ def frequency_sort(arr):
 
 
 print(frequency_sort([2,3,5,3,7,9,5,3,7]))
+
+
+"""
+Simple Fun #162: Pair Wise
+
+Given an array arr and a number n. Call a pair of numbers from the array a Perfect Pair if their sum is equal to n.
+
+Find all of the perfect pairs and return the sum of their indices.
+
+Note that any element of the array can only be counted in one Perfect Pair. 
+If there are multiple correct answers, return the smallest one.
+Example
+
+For arr = [1, 4, 2, 3, 0, 5] and n = 7, the result should be 11.
+
+Since the Perfect Pairs are (4, 3) and (2, 5) with indices 1 + 3 + 2 + 5 = 11.
+
+For arr = [1, 3, 2, 4] and n = 4, the result should be 1.
+
+Since the element at index 0 (i.e. 1) and the element at index 1 (i.e. 3) form the only Perfect Pair
+"""
+
+print('*** Simple Fun #162: Pair Wise ***')
+
+
+def pairwise(arr, n):
+    res = []
+    for i in range(len(arr)):
+        for j in range(i+1, len(arr)):
+            if i in res or j in res: continue
+            if arr[i] + arr[j] == n:
+                res.append(i)
+                res.append(j)
+    return sum(res)
+
+
+print(pairwise([1, 4, 2, 3, 0, 5],7))
+print(pairwise([1, 1, 1],2))
+print(pairwise([15, 1, 1],5))

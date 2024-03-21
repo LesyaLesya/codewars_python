@@ -2847,3 +2847,25 @@ def is_it_letter(s):
 print(is_it_letter('1'))
 print(is_it_letter('!'))
 print(is_it_letter('a'))
+
+
+"""
+Running out of space
+
+For example, running this function on the array ['i', 'have','no','space'] 
+would produce ['i','ihave','ihaveno','ihavenospace']
+"""
+
+print('*** Running out of space ***')
+
+
+def spacey(array):
+    res = [array[0]]
+    buff = array[0]
+    for i in range(1, len(array)):
+        res.append(buff + array[i])
+        buff += array[i]
+    return res
+
+
+print(spacey(['i', 'have','no','space']))
