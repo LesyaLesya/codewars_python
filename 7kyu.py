@@ -2869,3 +2869,76 @@ def spacey(array):
 
 
 print(spacey(['i', 'have','no','space']))
+
+
+"""
+Holiday II - Plane Seating
+"""
+
+print('*** Holiday II - Plane Seating ***')
+
+
+def plane_seat(a):
+    section = {'Front-': range(1, 21), 'Middle-': range(21, 41), 'Back-': range(41, 61)}
+    seats = {'Left': 'ABC', 'Middle': 'DEF', 'Right': 'GHK'}
+    num, letter = int(a[:-1]), a[-1]
+    res = []
+    for i, j in section.items():
+        if num in j:
+            res.append(i)
+            break
+    for i, j in seats.items():
+        if letter in j:
+            res.append(i)
+            break
+    return ''.join(res) if len(res) == 2 else 'No Seat!!'
+
+
+print(plane_seat('2B'))
+print(plane_seat('58I'))
+print(plane_seat('60D'))
+
+
+"""
+Turn any word into a beef taco
+
+We want to input a word as a string, and return a list representing that word as a taco.
+
+Key
+
+all vowels (except 'y') = beef
+
+t = tomato
+
+l = lettuce
+
+c = cheese
+
+g = guacamole
+
+s = salsa
+
+NOTE
+We do not care about case here. 'S' is therefore equivalent to 's' in our taco.
+
+Ignore all other letters; we don't want our taco uneccesarily clustered or else it will be too difficult to eat.
+
+Note that no matter what ingredients are passed, our taco will always have a shell.
+"""
+
+print('*** Turn any word into a beef taco ***')
+
+
+def tacofy(word):
+    word = list(word.lower())
+    tacos = {'t': 'tomato', 'l': 'lettuce', 'c': 'cheese', 'g': 'guacamole', 's': 'salsa', 'a': 'beef', 'e': 'beef',
+             'i': 'beef', 'o': 'beef', 'u': 'beef'}
+    res = [tacos[i] for i in word if i in tacos]
+    return ['shell'] + res + ['shell']
+
+
+print(tacofy(''))
+print(tacofy('a'))
+print(tacofy('ogl'))
+print(tacofy("MaXwElL"))
+print(tacofy("alel"))
