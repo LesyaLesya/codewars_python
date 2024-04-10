@@ -2942,3 +2942,148 @@ print(tacofy('a'))
 print(tacofy('ogl'))
 print(tacofy("MaXwElL"))
 print(tacofy("alel"))
+
+
+"""
+Change two-dimensional array
+
+Function receive a two-dimensional square array of random integers. On the main diagonal, all the negative integers must be changed to 0, while the others must be changed to 1 (Note: 0 is considered non-negative, here).
+
+(You can mutate the input if you want, but it is a better practice to not mutate the input)
+
+Example:
+
+Input array
+
+[
+  [-1,  4, -5, -9,  3 ],
+  [ 6, -4, -7,  4, -5 ],
+  [ 3,  5,  0, -9, -1 ],
+  [ 1,  5, -7, -8, -9 ],
+  [-3,  2,  1, -5,  6 ]
+]
+
+Output array
+
+[
+  [ 0,  4, -5, -9,  3 ],
+  [ 6,  0, -7,  4, -5 ],
+  [ 3,  5,  1, -9, -1 ],
+  [ 1,  5, -7,  0, -9 ],
+  [-3,  2,  1, -5,  1 ]
+]
+"""
+
+print('*** Change two-dimensional array ***')
+
+
+def matrix(array):
+    for i, arr in enumerate(array):
+        array[i][i] = 0 if array[i][i] < 0 else 1
+    return array
+
+
+print(matrix([
+  [-1,  4, -5, -9,  3 ],
+  [ 6, -4, -7,  4, -5 ],
+  [ 3,  5,  0, -9, -1 ],
+  [ 1,  5, -7, -8, -9 ],
+  [-3,  2,  1, -5,  6 ]]))
+
+
+"""
+Character Counter
+
+You are going to be given a word. Your job will be to make sure that each character in that word has the exact 
+same number of occurrences. You will return true if it is valid, or false if it is not.
+
+For this kata, capitals are considered the same as lowercase letters. Therefore: "A" == "a"
+
+The input is a string (with no spaces) containing [a-z],[A-Z],[0-9] and common symbols. 
+The length will be 0 < length < 100.
+Examples
+
+    "abcabc" is a valid word because "a" appears twice, "b" appears twice, and"c" appears twice.
+    "abcabcd" is NOT a valid word because "a" appears twice, "b" appears twice, "c" appears twice, 
+    but "d" only appears once!
+    "123abc!" is a valid word because all of the characters only appear once in the word.
+"""
+
+print('*** Character Counter ***')
+
+
+def validate_word(word):
+    word = word.lower()
+    num = word.count(word[0])
+    return len(set(word)) == len(word) / num
+
+
+print(validate_word("abcabc"))
+print(validate_word("Abcabc"))
+print(validate_word("AbcabcC"))
+
+
+"""
+Odd-Even String Sort
+
+Given a string s, your task is to return another string such that even-indexed and odd-indexed 
+characters of s are grouped and the groups are space-separated. Even-indexed group comes as first, followed 
+by a space, and then by the odd-indexed part.
+Examples
+
+input:    "CodeWars" => "CdWr oeas"
+           ||||||||      |||| ||||
+indices:   01234567      0246 1357
+
+Even indices 0, 2, 4, 6, so we have "CdWr" as the first group.
+Odd indices are 1, 3, 5, 7, so the second group is "oeas".
+And the final string to return is "Cdwr oeas".
+"""
+
+print('*** Odd-Even String Sort ***')
+
+
+def sort_my_string(s):
+    odd = ''.join([value for idx, value in enumerate(s) if idx % 2 != 0])
+    even = ''.join([value for idx, value in enumerate(s) if idx % 2 == 0])
+    return f'{even} {odd}'
+
+
+print(sort_my_string("YCOLUE'VREER"))
+print(sort_my_string("CodeWars"))
+
+
+"""
+Mutate My Strings
+
+ will give you two strings. I want you to transform stringOne into stringTwo one letter at a time.
+
+Example:
+
+stringOne = 'bubble gum';
+stringTwo = 'turtle ham';
+
+Result:
+bubble gum
+tubble gum
+turble gum
+turtle gum
+turtle hum
+turtle ham
+"""
+
+print('*** Mutate My Strings ***')
+
+
+def mutate_my_strings(s1,s2):
+    res = f'{s1}\n'
+    s1 = list(s1)
+    s2 = list(s2)
+    for idx, value in enumerate(s1):
+        if s1[idx] != s2[idx]:
+            s1[idx] = s2[idx]
+            res += f'{"".join(s1)}\n'
+    return res
+
+
+print(mutate_my_strings("bubble gum", "turtle ham"))

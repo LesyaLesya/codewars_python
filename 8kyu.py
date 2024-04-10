@@ -871,3 +871,57 @@ def remove_exclamation_marks(s):
 
 print(remove_exclamation_marks("Hi! Hello!"))
 print(remove_exclamation_marks(""))
+
+
+"""
+Rock Paper Scissors!
+
+Let's play! You have to return which player won! In case of a draw return Draw!.
+
+Examples(Input1, Input2 --> Output):
+
+"scissors", "paper" --> "Player 1 won!"
+"scissors", "rock" --> "Player 2 won!"
+"paper", "paper" --> "Draw!"
+"""
+
+print('*** Rock Paper Scissors! ***')
+
+
+def rps(p1, p2):
+    if p1 == p2:
+        return 'Draw!'
+    elif (p1 == 'rock' and p2 == 'scissors') or (p1 == 'scissors' and p2 == 'paper') or (
+            p1 == 'paper' and p2 == 'rock'):
+        return 'Player 1 won!'
+    else:
+        return 'Player 2 won!'
+
+
+print(rps('rock', 'scissors'))
+print(rps('rock', 'rock'))
+print(rps('scissors', 'rock'))
+
+
+"""
+Well of Ideas - Easy Version
+
+In this kata you need to check the provided array (x) for good ideas 'good' and bad ideas 'bad'. 
+If there are one or two good ideas, return 'Publish!', if there are more than 2 return 'I smell a series!'. 
+If there are no good ideas, as is often the case, return 'Fail!'.
+"""
+
+print('*** Well of Ideas - Easy Version ***')
+
+
+def well(x):
+    if x.count('good') > 2:
+        return 'I smell a series!'
+    elif 'good' not in x:
+        return  'Fail!'
+    else:
+        return 'Publish!'
+
+
+print(well(['bad', 'bad', 'bad']))
+print(well(['good', 'bad', 'bad', 'bad', 'bad']))
