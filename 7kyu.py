@@ -3087,3 +3087,114 @@ def mutate_my_strings(s1,s2):
 
 
 print(mutate_my_strings("bubble gum", "turtle ham"))
+
+
+"""
+Integer Difference
+
+Write a function that accepts two arguments: an array/list of integers and another integer (n).
+
+Determine the number of times where two integers in the array have a difference of n.
+
+For example:
+
+[1, 1, 5, 6, 9, 16, 27], n=4  -->  3  # (1,5), (1,5), (5,9)
+[1, 1, 3, 3], n=2             -->  4  # (1,3), (1,3), (1,3), (1,3)
+"""
+
+print('*** Integer Difference ***')
+
+
+def int_diff(lst, n):
+    res = 0
+    for i in range(len(lst)):
+        for j in range(i+1, len(lst)):
+            if abs(lst[i] - lst[j]) == n:
+                res += 1
+    return res
+
+
+print(int_diff([1, 1, 5, 6, 9, 16, 27], 4))
+print(int_diff([1,2,3,4], 0))
+
+
+"""
+String Scramble
+
+Given a string and an array of index numbers, return the characters of the string rearranged to be in 
+the order specified by the accompanying array.
+
+Ex:
+
+scramble('abcd', [0,3,1,2]) -> 'acdb'
+
+The string that you will be returning back will have: 'a' at index 0, 'b' at index 3, 'c' at index 1, 'd' at index 2, 
+because the order of those characters maps to their corresponding numbers in the index array.
+
+In other words, put the first character in the string at the index described by the first element of the array
+
+You can assume that you will be given a string and array of equal length and both containing valid characters 
+(A-Z, a-z, or 0-9).
+"""
+
+print('*** String Scramble ***')
+
+
+def scramble(strng, array):
+    res = ['a'] * len(array)
+    for idx, value in enumerate(array):
+        res[value] = strng[idx]
+    return ''.join(res)
+
+
+print(scramble('abcd', [0,3,1,2]))
+
+
+"""
+String basics
+
+    Remove all hashtags
+    Remove the leading "uid" from each user ID
+    Return an array of strings --> split the string
+    Each user ID should be written in only lowercase characters
+    Remove leading and trailing whitespaces
+"""
+
+print('*** String basics ***')
+
+
+def get_users_ids(st):
+    res = st.split(',')
+    for idx, value in enumerate(res):
+        res[idx] = value.lower().replace("#", "").replace("uid", "", 1).strip()
+    return res
+
+
+print(get_users_ids("uidMultipleuid"))
+print(get_users_ids("uid12 ab, uid#, uidMiXeDcHaRs"))
+
+
+"""
+Sum it continuously
+
+Make a function "add" that will be able to sum elements of list continuously and return a new list of sums.
+
+For example:
+
+add [1,2,3,4,5] == [1, 3, 6, 10, 15], because it's calculated like 
+this : [1, 1 + 2, 1 + 2 + 3, 1 + 2 + 3 + 4, 1 + 2 + 3 + 4 + 5]
+"""
+
+print('*** Sum it continuously ***')
+
+
+def add(lst):
+    res = []
+    buf = 0
+    for idx, value in enumerate(lst):
+        buf += lst[idx]
+        res.append(buf)
+    return res
+
+
+print(add([1,2,3,4,5]))
