@@ -1538,3 +1538,42 @@ def pairwise(arr, n):
 print(pairwise([1, 4, 2, 3, 0, 5],7))
 print(pairwise([1, 1, 1],2))
 print(pairwise([15, 1, 1],5))
+
+
+"""
+The Vowel Code
+
+
+Step 1: Create a function called encode() to replace all the lowercase vowels 
+in a given string with numbers according to the following pattern:
+
+a -> 1
+e -> 2
+i -> 3
+o -> 4
+u -> 5
+
+For example, encode("hello") would return "h2ll4". There is no need to worry about uppercase vowels in this kata.
+
+Step 2: Now create a function called decode() to turn the numbers back into vowels according 
+to the same pattern shown above.
+
+For example, decode("h3 th2r2") would return "hi there".
+"""
+
+print('*** The Vowel Code ***')
+
+VOWELS_ENCODE = {'a': '1', 'e': '2', 'i': '3', 'o': '4', 'u': '5'}
+VOWELS_DECODE = {'1': 'a', '2': 'e', '3': 'i', '4': 'o', '5': 'u'}
+
+
+def encode(st):
+    return ''.join([VOWELS_ENCODE[i] if i in VOWELS_ENCODE else i for i in st])
+
+
+def decode(st):
+    return ''.join([VOWELS_DECODE[i] if i in VOWELS_DECODE else i for i in st])
+
+
+print(encode('hello'))
+print(decode('h2ll4'))

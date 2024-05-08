@@ -3198,3 +3198,184 @@ def add(lst):
 
 
 print(add([1,2,3,4,5]))
+
+
+"""
+Least Larger
+
+Given an array of numbers and an index, return either the index of the smallest number that is 
+larger than the element at the given index, or -1 if there is no such index ( or, where applicable, Nothing or a similarly empty value ).
+Notes
+
+Multiple correct answers may be possible. In this case, return any one of them.
+The given index will be inside the given array.
+The given array will, therefore, never be empty.
+Example
+
+least_larger( [4, 1, 3, 5, 6], 0 )  ->  3
+least_larger( [4, 1, 3, 5, 6], 4 )  -> -1
+"""
+
+print('*** Least Larger ***')
+
+
+def least_larger(a, i):
+    num = a[i]
+    l = [i for i in a if i > num]
+    return a.index(min(l)) if l else -1
+
+
+print(least_larger([4, 1, 3, 5, 6], 0))
+print(least_larger([4, 1, 3, 5, 6], 4))
+print(least_larger([1, 3, 5, 2, 4], 0))
+
+
+"""
+Lottery machine
+
+our task is to write an update for a lottery machine. 
+Its current version produces a sequence of random letters and integers (passed as a string to the function). 
+Your code must filter out all letters and return unique integers as a string, in their order of first appearance. 
+If there are no integers in the string return "One more run!"
+Examples
+
+"hPrBKWDH8yc6Lt5NQZWQ"  -->  "865"
+"ynMAisVpHEqpqHBqTrwH"  -->  "One more run!"
+"555"                   -->  "5"
+"""
+
+print('*** Lottery machine ***')
+
+
+def lottery(s):
+    l = ''.join(list(collections.OrderedDict.fromkeys([i for i in s if i.isdigit()]).keys()))
+    return l if l else "One more run!"
+
+
+print(lottery("hPrBKWDH8yc6Lt5NQZWQ"))
+print(lottery("ynMAisVpHEqpqHBqTrwH"))
+print(lottery("555"))
+
+
+"""
+Sum of Minimums!
+
+Given a 2D ( nested ) list ( array, vector, .. ) of size m * n, your task is to find the sum of the 
+minimum values in each row.
+
+For Example:
+
+[ [ 1, 2, 3, 4, 5 ]        #  minimum value of row is 1
+, [ 5, 6, 7, 8, 9 ]        #  minimum value of row is 5
+, [ 20, 21, 34, 56, 100 ]  #  minimum value of row is 20
+]
+
+So the function should return 26 because the sum of the minimums is 1 + 5 + 20 = 26.
+"""
+
+
+print('*** Sum of Minimums! ***')
+
+
+def sum_of_minimums(numbers):
+    return sum([min(i) for i in numbers])
+
+
+print(sum_of_minimums([ [ 1, 2, 3, 4, 5 ], [ 5, 6, 7, 8, 9 ], [ 20, 21, 34, 56, 100 ] ]))
+
+
+"""
+Evens times last
+
+Given a sequence of integers, return the sum of all the integers that have an even index (odd index in COBOL), 
+multiplied by the integer at the last index.
+
+Indices in sequence start from 0.
+
+If the sequence is empty, you should return 0.
+"""
+
+print('*** Evens times last ***')
+
+
+def even_last(numbers):
+    if len(numbers) == 0: return 0
+    return sum([value for idx, value in enumerate(numbers) if idx% 2 == 0]) * numbers[-1]
+
+
+print(even_last([2, 3, 4, 5]))
+print(even_last([]))
+
+
+"""
+Double Every Other
+
+Write a function that doubles every second integer in a list, starting from the left.
+
+Example:
+
+For input array/list :
+
+[1,2,3,4]
+
+the function should return :
+
+[1,4,3,8]
+"""
+
+print('*** Double Every Other ***')
+
+
+def double_every_other(lst):
+    res = []
+    for idx, value in enumerate(lst):
+        if idx % 2 != 0:
+            res.append(value * 2)
+        else:
+            res.append(value)
+    return res
+
+
+print(double_every_other([1,2,3,4]))
+
+
+"""
+Check the exam
+
+The first input array is the key to the correct answers to an exam, like ["a", "a", "b", "d"]. 
+The second one contains a student's submitted answers.
+
+The two arrays are not empty and are the same length. Return the score for this array of answers, 
+giving +4 for each correct answer, -1 for each incorrect answer, and +0 for each blank answer, 
+represented as an empty string (in C the space character is used).
+
+If the score < 0, return 0.
+
+For example:
+
+    Correct answer    |    Student's answer   |   Result         
+ ---------------------|-----------------------|-----------
+ ["a", "a", "b", "b"]   ["a", "c", "b", "d"]  →     6
+ ["a", "a", "c", "b"]   ["a", "a", "b", "" ]  →     7
+ ["a", "a", "b", "c"]   ["a", "a", "b", "c"]  →     16
+ ["b", "c", "b", "a"]   ["" , "a", "a", "c"]  →     0
+"""
+
+
+print('*** Check the exam ***')
+
+
+def check_exam(arr1, arr2):
+    res = 0
+    for idx, value in enumerate(arr2):
+        if value and value == arr1[idx]:
+            res += 4
+        elif not value:
+            res += 0
+        else:
+            res -= 1
+    return res if res > 0 else 0
+
+
+print(check_exam(["a", "a", "b", "b"], ["a", "c", "b", "d"]))
+print(check_exam(["b", "c", "b", "a"], ["",  "a", "a", "c"]))
