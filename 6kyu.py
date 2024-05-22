@@ -5,6 +5,7 @@ import sys
 from time import sleep
 import time
 from collections import OrderedDict
+from string import ascii_lowercase
 
 """
 Detect Pangram
@@ -1577,3 +1578,104 @@ def decode(st):
 
 print(encode('hello'))
 print(decode('h2ll4'))
+
+
+"""
+Replace With Alphabet Position
+
+In this kata you are required to, given a string, replace every letter with its position in the alphabet.
+
+If anything in the text isn't a letter, ignore it and don't return it.
+
+"a" = 1, "b" = 2, etc.
+Example
+
+Input = "The sunset sets at twelve o' clock."
+Output = "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11"
+"""
+
+print('*** Replace With Alphabet Position ***')
+
+
+def alphabet_position(text):
+    alphabet = ascii_lowercase
+    letters = [i.lower() for i in text if i.isalpha()]
+    result = [str(alphabet.index(i) + 1) for i in letters]
+    return ' '.join(result)
+
+
+print(alphabet_position("The sunset sets at twelve o' clock."))
+
+
+"""
+Playing with passphrases
+
+
+Everyone knows passphrases. One can choose passphrases from poems, songs, movies names and so on but 
+frequently they can be guessed due to common cultural references. You can get your passphrases 
+stronger by different means. One is the following:
+
+choose a text in capital letters including or not digits and non alphabetic characters,
+
+    shift each letter by a given number but the transformed letter must be a letter (circular shift),
+    replace each digit by its complement to 9,
+    keep such as non alphabetic and non digit characters,
+    downcase each letter in odd position, upcase each letter in even position (the first character is in position 0),
+    reverse the whole result.
+
+Example:
+
+your text: "BORN IN 2015!", shift 1
+
+1 + 2 + 3 -> "CPSO JO 7984!"
+
+4 "CpSo jO 7984!"
+
+5 "!4897 Oj oSpC"
+"""
+
+
+print('*** Playing with passphrases ***')
+
+
+def play_pass(s, n):
+    alphabet = ascii_lowercase + ascii_lowercase
+    lst = list(s.lower())
+    for idx, value in enumerate(lst):
+        if value.isalpha():
+            letter = alphabet[(alphabet.index(value) + n)]
+            print(letter)
+            if idx % 2 != 0:
+                lst[idx] = letter
+            else:
+                lst[idx] = letter.upper()
+
+        if value.isdigit():
+            lst[idx] = str(9 - int(value))
+    return ''.join(reversed(lst))
+
+
+print(play_pass("BORN IN 2015!", 1))
+print(play_pass("MY GRANMA CAME FROM NY ON THE 23RD OF APRIL 2015", 2))
+
+
+"""
+Only Duplicates
+
+Given a string, remove any characters that are unique from the string.
+
+Example:
+
+input: "abccdefee"
+
+output: "cceee"
+"""
+
+print('*** Only Duplicates ***')
+
+
+def only_duplicates(st):
+    return ''.join([i for i in st if st.count(i) > 1])
+
+
+print(only_duplicates("abccdefee"))

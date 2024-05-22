@@ -925,3 +925,35 @@ def well(x):
 
 print(well(['bad', 'bad', 'bad']))
 print(well(['good', 'bad', 'bad', 'bad', 'bad']))
+
+
+"""
+CSV representation of array
+
+Create a function that returns the CSV representation of a two-dimensional numeric array.
+
+Example:
+
+input:
+   [[ 0, 1, 2, 3, 4 ],
+    [ 10,11,12,13,14 ],
+    [ 20,21,22,23,24 ],
+    [ 30,31,32,33,34 ]] 
+    
+output:
+     '0,1,2,3,4\n'
+    +'10,11,12,13,14\n'
+    +'20,21,22,23,24\n'
+    +'30,31,32,33,34'
+"""
+
+print('*** CSV representation of array ***')
+
+
+def to_csv_text(array):
+    array = [','.join(list(map(str, i))) for i in array]
+    return '\n'.join(array)
+
+
+print(to_csv_text([[-25, 21, 2, -33, 48],
+            [30, 31, -32, 33, -34]]))

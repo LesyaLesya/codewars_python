@@ -3379,3 +3379,66 @@ def check_exam(arr1, arr2):
 
 print(check_exam(["a", "a", "b", "b"], ["a", "c", "b", "d"]))
 print(check_exam(["b", "c", "b", "a"], ["",  "a", "a", "c"]))
+
+
+"""
+Ones and Zeros
+
+Given an array of ones and zeroes, convert the equivalent binary value to an integer.
+
+Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1.
+
+Examples:
+
+Testing: [0, 0, 0, 1] ==> 1
+Testing: [0, 0, 1, 0] ==> 2
+Testing: [0, 1, 0, 1] ==> 5
+Testing: [1, 0, 0, 1] ==> 9
+Testing: [0, 0, 1, 0] ==> 2
+Testing: [0, 1, 1, 0] ==> 6
+Testing: [1, 1, 1, 1] ==> 15
+Testing: [1, 0, 1, 1] ==> 11
+"""
+
+print('*** Ones and Zeros ***')
+
+
+def binary_array_to_number(arr):
+    return int(''.join(list(map(str, arr))), 2)
+
+
+print(binary_array_to_number([0, 0, 0, 1]))
+print(binary_array_to_number([0, 0, 1, 0]))
+
+
+"""
+Find the missing element between two arrays
+
+Given two integer arrays where the second array is a shuffled duplicate of the first 
+array with one element missing, find the missing element.
+
+Please note, there may be duplicates in the arrays, so checking if a numerical value exists 
+in one and not the other is not a valid solution.
+
+find_missing([1, 2, 2, 3], [1, 2, 3]) => 2
+
+find_missing([6, 1, 3, 6, 8, 2], [3, 6, 6, 1, 2]) => 8
+"""
+
+print('*** Find the missing element between two arrays ***')
+
+
+def find_missing(arr1, arr2):
+    # version 1
+    # return sum(arr1) - sum(arr2)
+    sorted_arr1 = sorted(arr1)
+    sorted_arr2 = sorted(arr2)
+    lst = list(itertools.zip_longest(sorted_arr1, sorted_arr2))
+    for i in lst:
+        if i[0] == i[1]:
+            continue
+        return i[0]
+
+
+print(find_missing([1, 2, 2, 3], [1, 2, 3]))
+print(find_missing([6, 1, 3, 6, 8, 2], [3, 6, 6, 1, 2]))
