@@ -3442,3 +3442,38 @@ def find_missing(arr1, arr2):
 
 print(find_missing([1, 2, 2, 3], [1, 2, 3]))
 print(find_missing([6, 1, 3, 6, 8, 2], [3, 6, 6, 1, 2]))
+
+
+"""
+Divisible by previous digit?
+
+Take a number and check each digit if it is divisible by the digit on its left checked and return an array of booleans.
+
+The booleans should always start with false becase there is no digit before the first one.
+Examples
+
+73312        => [false, false, true, false, true]
+2026         => [false, true, false, true]
+635          => [false, false, false]
+"""
+
+print('*** Divisible by previous digit? ***')
+
+
+def divisible_by_last(n):
+    res = [False]
+    n = str(n)
+    for i in range(1, len(n)):
+        try:
+            if int(n[i]) % int(n[i-1]) == 0:
+                res.append(True)
+            else:
+                res.append(False)
+        except ZeroDivisionError:
+            res.append(False)
+    return res
+
+
+print(divisible_by_last(73312))
+print(divisible_by_last(635))
+print(divisible_by_last(2026))

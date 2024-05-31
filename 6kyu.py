@@ -1679,3 +1679,72 @@ def only_duplicates(st):
 
 
 print(only_duplicates("abccdefee"))
+
+
+"""
+Difference of 2
+
+The objective is to return all pairs of integers from a given array of integers that have a difference of 2.
+
+The result array should be sorted in ascending order of values.
+
+Assume there are no duplicate integers in the array. The order of the integers in the input array should not matter.
+Examples
+
+[1, 2, 3, 4]  should return [(1, 3), (2, 4)]
+
+[4, 1, 2, 3]  should also return [(1, 3), (2, 4)]
+
+[1, 23, 3, 4, 7] should return [(1, 3)]
+
+[4, 3, 1, 5, 6] should return [(1, 3), (3, 5), (4, 6)]
+"""
+
+print('*** Difference of 2 ***')
+
+
+def twos_difference(lst):
+    res = []
+    for i in range(len(lst)):
+        for j in range (i+1, len(lst)):
+            if abs(lst[i] - lst[j]) == 2:
+                l = tuple(sorted([lst[i], lst[j]]))
+                res.append(l)
+    return sorted(res)
+
+
+print(twos_difference([1, 2, 3, 4]))
+print(twos_difference([1, 4, 7, 10]))
+
+
+"""
+uniq (UNIX style)
+
+Implement a function which behaves like the uniq command in UNIX.
+
+It takes as input a sequence and returns a sequence in which all duplicate elements 
+following each other have been reduced to one instance.
+
+Example:
+
+["a", "a", "b", "b", "c", "a", "b", "c"]  =>  ["a", "b", "c", "a", "b", "c"]
+"""
+
+print('*** uniq (UNIX style) ***')
+
+
+def uniq(seq):
+    if len(seq) <= 1: return seq
+    new_lst = []
+    prev = ''
+    for i in seq:
+        if i == prev:
+            continue
+        new_lst.append(i)
+        prev = i
+    return new_lst
+
+
+print(uniq(['a','a','b','b','c','a','b','c','c']))
+print(uniq(['']))
+print(uniq([]))
