@@ -1,5 +1,6 @@
 import re
 import random
+import string
 from collections import OrderedDict
 
 """
@@ -957,3 +958,26 @@ def to_csv_text(array):
 
 print(to_csv_text([[-25, 21, 2, -33, 48],
             [30, 31, -32, 33, -34]]))
+
+
+"""
+get character from ASCII Value
+
+Write a function which takes a number and returns the corresponding ASCII char for that value.
+
+Example:
+
+65 --> 'A'
+97 --> 'a'
+48 --> '0
+"""
+
+print('*** get character from ASCII Value ***')
+
+
+def get_char(c):
+  return chr(c)
+
+
+print(get_char(65))
+print(get_char(33))

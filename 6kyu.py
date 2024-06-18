@@ -1748,3 +1748,79 @@ def uniq(seq):
 print(uniq(['a','a','b','b','c','a','b','c','c']))
 print(uniq(['']))
 print(uniq([]))
+
+
+"""
+IP Validation
+
+Write an algorithm that will identify valid IPv4 addresses in dot-decimal format. 
+IPs should be considered valid if they consist of four octets, with values between 0 and 255, inclusive.
+Valid inputs examples:
+
+Examples of valid inputs:
+1.2.3.4
+123.45.67.89
+
+Invalid input examples:
+
+1.2.3
+1.2.3.4.5
+123.456.78.90
+123.045.067.089
+
+Notes:
+
+    Leading zeros (e.g. 01.02.03.04) are considered invalid
+    Inputs are guaranteed to be a single string
+"""
+
+print('*** IP Validation ***')
+
+
+def is_valid_IP(strng):
+    if not len(strng): return False
+    l = strng.split('.')
+    if len(l) == 4:
+        return all([i.isdigit() and 0 <= int(i) <= 255 and not (i.startswith('0') and len(i) > 1) for i in l])
+    else:
+        return False
+
+
+print(is_valid_IP('12.255.56.1'))
+print(is_valid_IP('abc.def.ghi.jkl'))
+print(is_valid_IP('123.456.789.0'))
+print(is_valid_IP(''))
+
+
+"""
+Highest Scoring Word
+
+Given a string of words, you need to find the highest scoring word.
+
+Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc.
+
+For example, the score of abad is 8 (1 + 2 + 1 + 4).
+
+You need to return the highest scoring word as a string.
+
+If two words score the same, return the word that appears earliest in the original string.
+
+All letters will be lowercase and all inputs will be valid.
+"""
+
+print('*** Highest Scoring Word ***')
+
+
+def high(x):
+    l = x.lower().split()
+    letters = string.ascii_lowercase
+    nums = {}
+    for i in l:
+        n = 0
+        for j in i:
+            n += letters.index(j) + 1
+        nums[i] = n
+    return max(nums, key=nums.get)
+
+
+print(high('man i need a taxi up to ubud'))
