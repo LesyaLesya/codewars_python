@@ -124,3 +124,44 @@ def strip_comments(strng, markers):
 
 print(strip_comments('apples, pears # and bananas\ngrapes\nbananas !apples', ['#', '!']))
 print(strip_comments('a #b\nc\nd $e f g', ['#', '$']))
+
+
+"""
+Next smaller number with the same digits
+
+Write a function that takes a positive integer and returns the next smaller positive integer 
+containing the same digits.
+
+For example:
+
+next_smaller(21) == 12
+next_smaller(531) == 513
+next_smaller(2071) == 2017
+
+Return -1 (for Haskell: return Nothing, for Rust: return None), when there is no smaller number that contains 
+the same digits. Also return -1 when the next smaller number with the same digits would require 
+the leading digit to be zero.
+
+next_smaller(9) == -1
+next_smaller(135) == -1
+next_smaller(1027) == -1  # 0721 is out since we don't write numbers with leading zeros
+
+    some tests will include very large numbers.
+    test data only employs positive integers.
+"""
+
+print('*** Next smaller number with the same digits ***')
+
+
+def next_smaller(n):
+    perms = tuple(set(itertools.permutations(str(n))))
+    l = (int(''.join(i)) for i in perms if i[0] != '0')
+    res = sorted(l, reverse=True)
+    m = res[res.index(n):]
+    return -1 if len(m) == 1 else m[1]
+
+
+print(next_smaller(907))
+print(next_smaller(135))
+print(next_smaller(414))
+print(next_smaller(1234567908))
