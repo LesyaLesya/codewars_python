@@ -1824,3 +1824,84 @@ def high(x):
 
 
 print(high('man i need a taxi up to ubud'))
+
+
+"""
+Range function
+
+Create range generator function that will take up to 3 parameters - start value, step and stop value. 
+This function should return an iterable object with numbers. For simplicity, 
+assume all parameters to be positive numbers.
+
+Examples:
+
+    range(5) --> 1,2,3,4,5
+    range(3, 7) --> 3,4,5,6,7
+    range(2, 3, 15) --> 2,5,8,11,14
+"""
+
+print('*** Range function ***')
+
+
+def range_function(*args):
+    if len(args) == 1:
+        return list(range(1, args[0]+1))
+    elif len(args) == 2:
+        return list(range(args[0], args[1]+1))
+    elif len(args) == 3:
+        return list(range(args[0], args[2]+1, args[1]))
+
+
+print(range_function(5))
+print(range_function(3, 7))
+print(range_function(2, 3, 15))
+
+
+"""
+How many feelings?
+
+You have two arguments: string - a string of random letters(only lowercase) and array - 
+an array of strings(feelings). Your task is to return how many specific feelings are in the array.
+
+For example:
+
+string -> 'yliausoenvjw'
+array -> ['anger', 'awe', 'joy', 'love', 'grief']
+output -> '3 feelings.' // 'awe', 'joy', 'love'
+
+
+string -> 'griefgriefgrief'
+array -> ['anger', 'awe', 'joy', 'love', 'grief']
+output -> '1 feeling.' // 'grief'
+
+
+string -> 'abcdkasdfvkadf'
+array -> ['desire', 'joy', 'shame', 'longing', 'fear']
+output -> '0 feelings.'
+"""
+
+print('*** How many feelings? ***')
+
+
+def count_feelings(st, arr):
+    lst = []
+    st = list(st)
+    for i in arr:
+        word = []
+        tmp = st[:]
+        for j in i:
+            if j in tmp:
+                tmp.remove(j)
+                word.append(True)
+            else:
+                word.append(False)
+        if all(word):
+            lst.append(i)
+    res = len(lst)
+    return f'{res} feelings.' if res == 0 or res > 1 else f'{res} feeling.'
+
+
+print(count_feelings('yliausoenvjw', ['anger', 'awe', 'joy', 'love', 'grief']))
+print(count_feelings('abcdkasdfvkadf', ['desire', 'joy', 'shame', 'longing', 'fear']))
+print(count_feelings('griefgriefgrief', ['anger', 'awe', 'joy', 'love', 'grief']))
+print(count_feelings('longi', ['anger', 'awe', 'joy', 'longing', 'grief']))
