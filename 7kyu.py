@@ -3534,3 +3534,112 @@ def spot_diff(s1, s2):
 
 print(spot_diff('abcdefg', 'abcqetg'))
 print(spot_diff('FixedGrey', 'FixedGrey'))
+
+
+"""
+Sort the Gift Code
+
+Write a function called sortGiftCode/sort_gift_code/SortGiftCode that accepts a string containing 
+up to 26 unique alphabetical characters, and returns a string containing the same characters in alphabetical order.
+Examples (Input -- => Output):
+
+"abcdef"                      -- => "abcdef"
+"pqksuvy"                     -- => "kpqsuvy"
+"zyxwvutsrqponmlkjihgfedcba"  -- => "abcdefghijklmnopqrstuvwxyz"
+"""
+
+print('*** Sort the Gift Code ***')
+
+
+def sort_gift_code(code):
+    return ''.join(sorted(code))
+
+
+print(sort_gift_code('abcdef'))
+print(sort_gift_code('pqksuvy'))
+print(sort_gift_code('zyxwvutsrqponmlkjihgfedcba'))
+
+
+"""
+Simple Fun #176: Reverse Letter
+
+Task
+
+Given a string str, reverse it and omit all non-alphabetic characters.
+Example
+
+For str = "krishan", the output should be "nahsirk".
+
+For str = "ultr53o?n", the output should be "nortlu".
+Input/Output
+
+    [input] string str
+
+A string consists of lowercase latin letters, digits and symbols.
+
+    [output] a string
+"""
+
+print('*** Simple Fun #176: Reverse Letter ***')
+
+
+def reverse_letter(st):
+    return ''.join(list(reversed([i for i in st if i.isalpha()])))
+
+
+print(reverse_letter('krishan'))
+print(reverse_letter('ultr53o?n'))
+
+
+"""
+The highest profit wins!
+
+Write a function that returns both the minimum and maximum number of the given list/array.
+Examples (Input --> Output)
+
+[1,2,3,4,5] --> [1,5]
+[2334454,5] --> [5,2334454]
+[1]         --> [1,1]
+"""
+
+print('*** The highest profit wins! ***')
+
+
+def min_max(lst):
+    return [min(lst), max(lst)]
+
+
+print(min_max([1,2,3,4,5]))
+print(min_max([1]))
+
+
+"""
+How many are smaller than me?
+
+Write a function that given, an array arr, returns an array containing at each index i 
+the amount of numbers that are smaller than arr[i] to the right.
+
+For example:
+
+* Input [5, 4, 3, 2, 1] => Output [4, 3, 2, 1, 0]
+* Input [1, 2, 0] => Output [1, 1, 0]
+"""
+
+print('*** How many are smaller than me? ***')
+
+
+def smaller(arr):
+    res = []
+    for idx1, value1 in enumerate(arr):
+        c = 0
+        for idx2, value2 in enumerate(arr[idx1+1:]):
+            if value2 < value1:
+                c += 1
+            else:
+                continue
+        res.append(c)
+    return res
+
+
+print(smaller([5, 4, 3, 2, 1]))
+print(smaller([1, 2, 0]))
