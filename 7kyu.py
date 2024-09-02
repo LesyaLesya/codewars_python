@@ -3643,3 +3643,55 @@ def smaller(arr):
 
 print(smaller([5, 4, 3, 2, 1]))
 print(smaller([1, 2, 0]))
+
+
+"""
+Last
+
+Find the last element of the given argument(s). If a single argument is passed and is a list/array or a string, return its last element. It is guaranteed that there will be at least one argument and that single-argument arrays/lists/strings will not be empty.
+Examples
+
+last(5)               ==> 5
+last([1, 2, 3, 4])    ==>  4
+last("xyz")           ==> "z"
+last(1, 2, 3, 4)      ==>  4
+last([1, 2], [3, 4])  ==>  [3, 4]
+last([[1, 2], [3, 4]])  ==>  [3, 4]
+"""
+print('*** Last ***')
+
+
+def last(*args):
+    if len(args) == 1:
+        arg = args[0]
+        return arg[-1] if type(arg) == str or type(arg) == list else arg
+    else:
+        return args[-1]
+
+
+print(last(5))
+print(last([1, 2, 3, 4]))
+print(last(1, 2, 3, 4))
+print(last("xyz"))
+print(last([[1, 2], [3, 4]]))
+
+
+"""
+Highest and Lowest
+
+high_and_low("1 2 3 4 5")  # return "5 1"
+high_and_low("1 2 -3 4 5") # return "5 -3"
+high_and_low("1 9 3 4 -5") # return "9 -5"
+"""
+
+print('*** Highest and Lowest ***')
+
+
+def high_and_low(numbers):
+    l = numbers.split()
+    return f'{max(l, key=int)} {min(l, key=int)}'
+
+
+print(high_and_low("1 2 3 4 5"))
+print(high_and_low("1 9 3 4 -5"))
+print(high_and_low("8 3 -5 42 -1 0 0 -9 4 7 4 -4"))

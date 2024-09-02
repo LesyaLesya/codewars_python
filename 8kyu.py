@@ -1028,3 +1028,99 @@ def update_light(current):
 print(update_light('green'))
 print(update_light('red'))
 print(update_light('yellow'))
+
+
+"""
+Reversing Words in a String
+
+You need to write a function that reverses the words in a given string. Words are always separated by a single space.
+
+As the input may have trailing spaces, you will also need to ignore unneccesary whitespace.
+
+Example (Input --> Output)
+
+"Hello World" --> "World Hello"
+"Hi There." --> "There. Hi"
+"""
+
+print('*** Reversing Words in a String ***')
+
+
+def reverse(st):
+    return ' '.join(reversed(st.split()))
+
+
+print(reverse("Hello World"))
+print(reverse("Hi There."))
+
+
+"""
+validate code with simple regex
+
+Basic regex tasks. Write a function that takes in a numeric code of any length. 
+The function should check if the code begins with 1, 2, or 3 and return true if so. Return false otherwise.
+You can assume the input will always be a number.
+"""
+
+print('*** validate code with simple regex ***')
+
+
+def validate_code(code):
+    s = str(code)
+    return bool(re.match("^[1-3]", s))
+
+
+print(validate_code(123))
+print(validate_code(248))
+print(validate_code(8))
+
+
+"""
+Simple Fun #352: Reagent Formula
+
+Now we will confect a reagent. There are eight materials to choose from, numbered 1,2,..., 8 respectively.
+
+We know the rules of confect:
+
+material1 and material2 cannot be selected at the same time
+material3 and material4 cannot be selected at the same time
+material5 and material6 must be selected at the same time
+material7 or  material8 must be selected(at least one, or both)
+
+Task
+
+You are given a integer array formula. Array contains only digits 1-8 that represents material 1-8. 
+Your task is to determine if the formula is valid. Returns true if it's valid, false otherwise.
+Example
+
+For formula = [1,3,7], The output should be true.
+
+For formula = [7,1,2,3], The output should be false.
+
+For formula = [1,3,5,7], The output should be false.
+
+For formula = [1,5,6,7,3], The output should be true.
+
+For formula = [5,6,7], The output should be true.
+
+For formula = [5,6,7,8], The output should be true.
+
+For formula = [6,7,8], The output should be false.
+
+For formula = [7,8], The output should be true
+"""
+
+print('*** Simple Fun #352: Reagent Formula ***')
+
+
+def is_valid(formula):
+    if (1 in formula and 2 in formula) or (3 in formula and 4 in formula
+    ) or (5 in formula and 6 not in formula) or (5 not in formula and 6 in formula) or (7 not in formula and 8 not in formula):
+        return False
+    else:
+        return True
+
+
+print(is_valid([1, 3, 7]))
+print(is_valid([1,5,6,7,3]))
+print(is_valid([6,7,8]))
