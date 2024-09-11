@@ -1124,3 +1124,62 @@ def is_valid(formula):
 print(is_valid([1, 3, 7]))
 print(is_valid([1,5,6,7,3]))
 print(is_valid([6,7,8]))
+
+
+"""
+String cleaning
+
+
+Your boss decided to save money by purchasing some cut-rate optical character recognition 
+software for scanning in the text of old novels to your database. At first it seems 
+to capture words okay, but you quickly notice that it throws in a lot of numbers at random places in the text.
+Examples (input -> output)
+
+'! !'                 -> '! !'
+'123456789'           -> ''
+'This looks5 grea8t!' -> 'This looks great!'
+
+Your harried co-workers are looking to you for a solution to take this garbled text and remove 
+all of the numbers. Your program will take in a string and clean out all numeric characters, 
+and return a string with spacing and special characters ~#$%^&!@*():;"'.,? all intact.
+"""
+
+print('*** String cleaning ***')
+
+
+def string_clean(s):
+    """
+    Function will return the cleaned string
+    """
+    return re.sub("[0-9]", "", s)
+
+
+print(string_clean("123456789"))
+print(string_clean("! !"))
+print(string_clean("This looks5 grea8t!"))
+
+
+"""
+The 'if' function
+
+Create a function called _if which takes 3 arguments: a value bool and 
+2 functions (which do not take any parameters): func1 and func2
+
+When bool is truthy, func1 should be called, otherwise call the func2.
+Example:
+
+def truthy(): 
+  print("True")
+  
+def falsey(): 
+  print("False")
+  
+_if(True, truthy, falsey)
+# prints 'True' to the co
+"""
+
+print('*** The "if" function ***')
+
+
+def _if(bool, func1, func2):
+    return func1() if bool else func2()

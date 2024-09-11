@@ -2,6 +2,7 @@ import itertools
 import collections
 import string
 import re
+import math
 
 """
 Descending Order
@@ -3695,3 +3696,118 @@ def high_and_low(numbers):
 print(high_and_low("1 2 3 4 5"))
 print(high_and_low("1 9 3 4 -5"))
 print(high_and_low("8 3 -5 42 -1 0 0 -9 4 7 4 -4"))
+
+
+"""
+Number to digit tiers
+
+Create a function that takes a number and returns an array of strings containing the number cut off at each digit.
+Examples
+
+    420 should return ["4", "42", "420"]
+    2017 should return ["2", "20", "201", "2017"]
+    2010 should return ["2", "20", "201", "2010"]
+    4020 should return ["4", "40", "402", "4020"]
+    80200 should return ["8", "80", "802", "8020", "80200"]
+
+PS: The input is guaranteed to be an integer in the range [0, 1000000]
+"""
+
+print('*** Number to digit tiers ***')
+
+
+def create_array_of_tiers(n):
+    l = str(n)
+    res = [l[:i] for i in range(1, len(l)+1)]
+    return res
+
+
+print(create_array_of_tiers(420))
+print(create_array_of_tiers(2017))
+
+
+"""
+Some (but not all)
+
+Your task is to create a function that given a sequence and a predicate, 
+returns True if only some (but not all) the elements in the sequence are True after applying the predicate
+Examples
+
+('abcdefg&%$', x -> isLetter(x)) == true
+('&%$=', x -> isLetter x) == false
+('abcdefg', x -> isLetter x) == false
+
+([4, 1], x -> x > 3) == true
+([1, 1], x -> x > 3) == false
+([4, 4], x -> x > 3) == false
+"""
+
+print('*** Some (but not all) ***')
+
+def some_but_not_all(seq, pred):
+    r = list(filter(pred, seq))
+    return False if len(r) == len(seq) or len(r) == 0 else True
+
+
+print(some_but_not_all('abcdefg&%$', str.isalpha))
+print(some_but_not_all('&%$=', str.isalpha))
+print(some_but_not_all([4, 1], lambda x: x>3))
+
+
+"""
+Building Spheres
+
+Arguments for the constructor
+
+radius -> integer or float (do not round it)
+mass -> integer or float (do not round it)
+
+Methods to be defined
+
+get_radius()       =>  radius of the Sphere (do not round it)
+get_mass()         =>  mass of the Sphere (do not round it)
+get_volume()       =>  volume of the Sphere (rounded to 5 place after the decimal)
+get_surface_area() =>  surface area of the Sphere (rounded to 5 place after the decimal)
+get_density()      =>  density of the Sphere (rounded to 5 place after the decimal)
+
+Example
+
+ball = Sphere(2,50)
+ball.get_radius() ->       2
+ball.get_mass() ->         50
+ball.get_volume() ->       33.51032
+ball.get_surface_area() -> 50.26548
+ball.get_density() ->      1.49208
+"""
+
+
+class Sphere(object):
+    def __init__(self, radius, mass):
+        self.radius = radius
+        self.mass = mass
+
+    def get_radius(self):
+        return self.radius
+
+    def get_mass(self):
+        return self.mass
+
+    def get_volume(self):
+        v = 4/3 * math.pi * self.radius ** 3
+        return round(v, 5)
+
+    def get_surface_area(self):
+        s = 4 * math.pi * self.radius ** 2
+        return round(s, 5)
+
+    def get_density(self):
+        d = self.mass / (4/3 * math.pi * self.radius ** 3)
+        return round(d, 5)
+
+
+ball = Sphere(2,50)
+print(ball.get_radius())
+print(ball.get_mass())
+print(ball.get_volume())
+print(ball.get_surface_area())
+print(ball.get_density())
