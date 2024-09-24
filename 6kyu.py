@@ -1981,4 +1981,3 @@ my_lamp.toggle_switch()
 print(my_lamp.state())
 my_lamp.toggle_switch()
 print(my_lamp.state())
-
